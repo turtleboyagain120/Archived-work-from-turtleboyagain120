@@ -1,4 +1,4 @@
- # SAFE add-on list (200+ patterns) for clean repos with reduced risk of hiding real content.
+# SAFE add-on list (200+ patterns) for clean repos with reduced risk of hiding real content.
 # IMPORTANT: This file is meant to be appended to your existing .gitignore.
 # It intentionally avoids global media ignores like *.png/*.jpg/*.mp4 because those
 # can hide real artwork/assets.
