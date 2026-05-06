@@ -1,899 +1,123 @@
-# SAFE add-on list (200+ patterns) for clean repos with reduced risk of hiding real content.
-# IMPORTANT: This file is meant to be appended to your existing .gitignore.
-# It intentionally avoids global media ignores like *.png/*.jpg/*.mp4 because those
-# can hide real artwork/assets.
+# SAFE SHORT .gitignore (~50 patterns)
+# Intended use: paste this into your existing .gitignore (or replace if you want a minimal baseline).
+# Focus: avoid over-aggressive media ignores; include only common junk + build/caches + leak prevention.
 
-########################################
-# Additional OS/editor junk (extra)
-########################################
-Thumbs.db
-Thumbs.db?
-Desktop.ini
+############################
+# 1) OS / editor / misc junk
+############################
 .DS_Store
 .DS_Store?
-.DS_Store.*
+Desktop.ini
+Thumbs.db
+Thumbs.db?
 Icon
 Icon?
+.Trash-*
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.Fseventsd
+.Spotlight-V100
+.TemporaryItems
+.VolumeIcon.icns
+
 *.swp
 *.swo
 *.swn
-*.swm
-*.tmp
-*.temp
 *~
 *.bak
+*.tmp
 *.log
-*.log.*
 *.pid
 *.seed
-*.pid.lock
 *.dmp
-*.core
 core
 core.*
-*.stackdump
-*.stackdump.*
-*.crash
-*.stack-trace
 
-########################################
-# Git metadata / tooling (rare to commit)
-########################################
-*.orig
-*.rej
-*.war
-*.ear
-*.class
-
-########################################
-# Archives & installers (often generated)
-########################################
-*.zip
-*.7z
-*.rar
-*.tar
-*.gz
-*.tgz
-*.bz2
-*.xz
-*.dmg
-*.exe
-*.msi
-
-########################################
-# Node / JS extras
-########################################
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-node_modules/
-.lockb
-package-lock.json~
-yarn.lock~
-
-# Common framework build dirs
-.nuxt/
-.next/
-.out/
-.nuxt-build/
-.svelte-kit/
-.vercel/
-.netlify/
-
-########################################
-# Python extras
-########################################
-*.pyc
-*.pyo
-*.pyd
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage*
-*.egg-info/
-.eggs/
-*.tox/
-
-########################################
-# Ruby / Rails extras
-########################################
-log/
-*.gem
-*.rbc
-*.rbs
-.bundle/
-
-########################################
-# Java/Gradle extras
-########################################
-.gradle/
-*.gradle
-build/
-*.jar
-*.war
-*.ear
-
-########################################
-# C/C++ extras
-########################################
-*.o
-*.obj
-*.a
-*.so
-*.dll
-*.pdb
-*.dylib
-*.exe
-*.map
-
-########################################
-# .NET extras
-########################################
-bin/
-obj/
-*.csproj.user
-*.user
-*.suo
-*.userosscache
-*.cache
-
-########################################
-# Rust/Cargo extras
-########################################
-target/
-Cargo.lock
-**/target/**
-
-########################################
-# Go extras
-########################################
-*.test
-*.prof
-bin/
-
-########################################
-# Data dumps / common generated states (generic)
-########################################
-*.sqlite
-*.sqlite3
-*.db
-*.csv~
-*.sql~
-*.sql
-*.dump
-*.dmp
-*.trace
-*.stacktrace
-
-########################################
-# Security scan outputs (extra)
-########################################
-*.sarif
-*.nuclei
-*.zap
-zap-report.html
-report.html
-report.json
-report.xml
-nuclei-*.json
-
-########################################
-# Credentials/secrets (filename-based only)
-# Reduce accidental hiding of real content.
-########################################
-.env
-.env.*
-*.env
-*.pem
-*.key
-*.crt
-*.p12
-*.pfx
-*.asc
-*.gpg
-
-# Common secret file names
-secrets.*
-secret.*
-credentials.*
-credential.*
-api-keys.*
-api_key.*
-service-account*.json
-
-# Token-ish filenames
-*.token
-*.tokens
-*.jwt
-*.refresh
-access-token.*
-refresh-token.*
-
-########################################
-# IDE / editor extras
-########################################
-.vscode/
-*.code-workspace
-*.sublime-workspace
-*.sublime-project
-.idea/
-*.iml
-*.ipr
-*.iws
-*.sln.docstates
-*.tmb
-*.swatches
-
-########################################
-# Build outputs (scoped suggestions)
-# If you want, you can keep these (they are typically generated)
-########################################
+############################
+# 2) Build artifacts
+############################
 dist/
 build/
 out/
 public/build/
+.cache/
+.vite/
+.next/
+.nuxt/
+.svelte-kit/
+.storybook/
+storybook-static/
 
-# Extra nested build-output patterns
 **/dist/
 **/build/
 **/out/
 
-########################################
-# --- Extra filler patterns to reach 200+ ---
-# (These are common junk extensions/names)
-########################################
-# Backup/temporary variants
-*.bak2
-*.bak3
-*.old
-*.new
-*.orig
-*.rej
-*.part
-*.crdownload
-*.download
-
-# Common transient text artifacts
-*.tmp.txt
-*.tmp.md
-*.tmp.json
-
-# Misc generated
-*.gen
-*.generated
-*.bundle
-*.min
-
-# Logs & traces
-trace.log
-server.log
-access.log
-error.log
-debug.log
-
-# Coverage variants
-coverage-final.json
-coverage-summary.json
-lcov.info
-
-# Test reports
-junit.xml
-test-results/
-TEST-*.xml
-
-# Docker build artifacts
-docker-compose.override.yml
-
-# Kubernetes local caches
-.kube/
-
-# Vercel/Netlify logs
-.vercel/
-.netlify/
-
-# Auto-generated: high-coverage junk/leak ignores (200+ patterns)
-# Use with care: some patterns may hide files you actually want committed.
-# Prefer narrowing to your projects if you notice missing content.
-
-########################################
-# OS / Desktop junk
-########################################
-.DS_Store
-.DS_Store?
-.DS_Store.*
-Desktop.ini
-Thumbs.db
-Thumbs.db?
-ehthumbs.db
-ehthumbs_vista.db
-Icon
-Icon?
-.Trash-
-.AppleDouble
-.LSOverride
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.VolumeIcon.icns
-com.apple.timemachine.supportd
-
-########################################
-# Windows cache / temp
-########################################
-*.log
-*.bak
-*.tmp
-*.swp
-*.swo
-*~
-*.pid
-*.pid.lock
-*.seed
-*.tmb
-*.dmp
-core
-core.*
-*.stackdump
-*.stack-trace
-*.stackdump.*
-*.crash
-*.stackdump
-
-########################################
-# macOS / iCloud / metadata
-########################################
-.DS_Store
-.AppleDesktop
-.AppleDB
-*.icloud
-
-########################################
-# Editor / IDE backups
-########################################
-.vscode/
-.vscode/extensions.json
-.vscode/settings.json
-.vscode/tasks.json
-.vscode/launch.json
-.vscode/*.code-workspace
-.vscode/*.log
-.vscode/*.tmp
-.vscode/*.suo
-.vscode/*.user
-.vscode/*.userosscache
-.vscode/ipch
-
-.idea/
-*.iml
-*.ipr
-*.iws
-*.sln.docstates
-*.vscode
-
-# JetBrains workspace cache
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
-.idea/shelf
-.idea/usageStatistics
-
-# Sublime Text
-*.sublime-workspace
-*.sublime-project
-
-########################################
-# Node / JavaScript
-########################################
+############################
+# 3) Dependencies / caches
+############################
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+.pnpm-debug.log*
 
-# Bundlers
-.cache/
-.vite/
-.next/
-.nuxt/
-.svelte-kit/
-.nuxt-build/
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage/
 
-# Output folders
-# (project-specific; safe for many archived repos)
-dist/
-build/
-out/
-public/build/
+# Virtual envs
+.venv/
+venv/
+ENV/
 
-# Coverage
+############################
+# 4) Secrets / leak prevention (strong)
+############################
+# Environment files
+.env
+.env.*
+
+# Generic secret filename patterns
+secrets.*
+secret.*
+credentials.*
+credential.*
+
+# Key/cert patterns (private material)
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+
+# Token-ish filenames (reduce accidental commits)
+*.jwt
+*.token
+*.tokens
+*.refresh
+access-token.*
+refresh-token.*
+api-keys.*
+api_key.*
+
+# NOTE: do NOT ignore your music/media content; this file avoids *.mp3/*.wav/*.png/etc.
+
+############################
+# 5) Logs / crash dumps / test reports
+############################
+*.trace
+*.stacktrace
+*.stackdump
+*.crash
+
 coverage/
 nyc_output/
 *.lcov
 junit.xml
-
-# Framework caches
-.vercel/
-.netlify/
-.storybook/
-storybook-static/
-
-########################################
-# Python
-########################################
-__pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-*.egg-info/
-.eggs/
-
-# Virtual environments
-.venv/
-venv/
-ENV/
-
-# Poetry
-.venv*/
-poetry.lock
-
-########################################
-# Ruby / Rails
-########################################
-/.bundle/
-.bundle/
-log/
-*.gem
-*.rbc
-*.rbs
-
-########################################
-# Java / Maven / Gradle
-########################################
-*.class
-*.jar
-*.war
-*.ear
-target/
-build/
-.gradle/
-*.gradle
-
-# IntelliJ
-*.ipr
-*.iws
-
-########################################
-# C/C++ build artifacts
-########################################
-*.o
-*.obj
-*.a
-*.lib
-*.so
-*.dll
-*.exe
-*.pdb
-*.mod
-*.elf
-*.map
-*.gch
-*.pch
-
-########################################
-# Go
-########################################
-bin/
-out/
-*.exe
-*.test
-
-########################################
-# Rust / Cargo
-########################################
-target/
-Cargo.lock
-**/target/**
-
-########################################
-# .NET
-########################################
-bin/
-obj/
-*.user
-*.suo
-*.userosscache
-*.cache
-
-########################################
-# Data / logs / dumps (generic)
-########################################
-*.csv~
-*.sql
-*.sqlite
-*.sqlite3
-*.db
-*.bak
-*.swp
-*.swn
-*.tmp
-*.temp
-*.old
-*.orig
-*.rej
-*.bak.*
-
-########################################
-# Credentials / secrets (high risk leak patterns)
-########################################
-.env
-.env.*
-*.env
-.envrc
-
-# Common secret filenames
-secrets.*
-secret.*
-keys.*
-key.*
-credentials.*
-credential.*
-passwd
-password
-pass.txt
-
-# PEM / key material
-*.pem
-*.key
-*.p8
-*.p12
-*.jks
-*.jceks
-*.crt
-*.cer
-*.csr
-
-# Tokens / API keys
-*.token
-*.tokens
-*.secret
-*.secrets
-*.jwt
-jwt.*
-*.refresh
-refresh-token.*
-access-token.*
-
-# GitHub / CI secrets dumps
-*.gpg
-*.asc
-
-# AWS
-.aws/
-*.aws.*
-credentials
-credentials.*
-config
-config.*
-
-# GCP
-*.gcloud
-application_default_credentials.json
-gooogle-credentials.json
-service-account*.json
-
-# Azure
-*.publishsettings
-
-# SSH keys
-id_rsa
-id_rsa.pub
-id_dsa
-id_dsa.pub
-id_ecdsa
-id_ecdsa.pub
-known_hosts
-
-# Certificates/private key files (extra)
-*.der
-*.pfx
-*.keychain
-
-########################################
-# Dump files (debug / leak by accident)
-########################################
-*.dump
-*.dmp
-*.core
-*.core.*
-*.log
-*.log.*
-*.trace
-*.stacktrace
-*.stackdump
-
-########################################
-# Temp archives / installers
-########################################
-*.zip
-*.7z
-*.rar
-*.tar
-*.gz
-*.tgz
-*.bz2
-*.xz
-
-########################################
-# Document junk (common user-generated)
-########################################
-*.pdf
-*.doc
-*.docx
-*.xls
-*.xlsx
-*.ppt
-*.pptx
-
-########################################
-# Media / generated binaries (optional; can hide real content!)
-########################################
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.webp
-*.svg
-*.mp3
-*.wav
-*.mp4
-*.mov
-*.avi
-*.mkv
-*.webm
-*.m4a
-*.flac
-
-########################################
-# Misc dev artifacts
-########################################
-*.sublime-session
-*.sublime-snippet
-*.sublime-settings
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Docker
-docker-compose.override.yml
-
-########################################
-# Security scans / reports
-########################################
-*.sarif
-*.nuclei
-*.zap
-zap-report.html
-report.html
-report.json
-report.xml
-
-########################################
-# Additional “junk” patterns (to reach ~200+)
-########################################
-# Backup suffixes
-*.swp
-*.swn
-*.swo
-*.swn
-*.tmp
-*.temp
-*.old
-*.orig
-*.rej
-*.conf~
-*.yml~
-*.json~
-*.md~
-*.txt~
-
-# Editor swap variants
-*.[Aa]swp
-*.[Bb]ak
-*.[Cc]ache
-
-# App/package caches
-*.DS_Store
-*.cache
-*.tmpfile
-*.crdownload
-
-# Common “credentials accidentally committed” names
-credentials.json
-credentials.yml
-credentials.yaml
-secrets.json
-secrets.yml
-secrets.yaml
-api-keys.json
-api-keys.yml
-
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.*
-crash.log
-
-# Kubernetes
-.kube/
-
-# Compose
-*.env.local
-
-# Misc CI outputs
-__tests__/
-
-# More generic build outputs
-build*/
-dist*/
-out*/
-public*/build*/
-
-# ==============================
-# Global ignores for this repo
-# Focus: keep the GitHub UI clean (no junk, no local env/OS files)
-# ==============================
-
-############################
-# OS / Editor / Misc
-############################
-.DS_Store
-.DS_Store?
-Thumbs.db
-Thumbs.db?
-ehthumbs.db
-Desktop.ini
-
-# Windows cache files
-*.log
-*.bak
-*.tmp
-*.swp
-*.swo
-*~
-
-# VS Code
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-
-# JetBrains
-.idea/
-*.iml
-
-# Sublime
-*.sublime-workspace
-*.sublime-project
-
-############################
-# Node / Web
-############################
-node_modules/
-
-# Build output (common)
-dist/
-build/
-out/
-
-# Parcel / Vite / Next / Nuxt / SvelteKit
-.cache/
-.vite/
-.next/
-.nuxt/
-.svelte-kit/
-
-# Coverage
-coverage/
-nyc_output/
-
-# Package manager lock / caches
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
-
-############################
-# Python
-############################
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environments
-.venv/
-venv/
-ENV/
-
-# Poetry
-.venv*
-poetry.lock
-
-# Testing / coverage
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-############################
-# Microsoft Office / Documents / Media junk
-############################
-*.docx
-*.xlsx
-*.pptx
-*.pdf
-
-############################
-# Credentials / Secrets (never commit)
-############################
-.env
-.env.*
-*.env
-
-# Common secret/config files
-*.pem
-*.key
-*.crt
-
-# Local-only config
-config.local.*
-secret.*
-
-############################
-# Logs / crash dumps
-############################
-*.log
-*.log.*
-*.dmp
-core
-core.*
-
-############################
-# IDE / tooling leftovers
-############################
-*.pid
-*.seed
-*.pid.lock
-
-############################
-# Images / binaries we might generate locally
-############################
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.webp
-*.mp4
-*.mov
-*.avi
-*.mp3
-*.wav
-
-############################
-# Misc repo hygiene
-############################
-# ignore editor/session files
-*.code-workspace
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# Local thumbnails
-*.tmb
-
-# ==============================
-# End
-# ==============================
+test-results/
