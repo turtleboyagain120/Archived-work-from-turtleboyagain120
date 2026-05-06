@@ -1,0 +1,121 @@
+name: Archived - CI / Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-all-projects:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Discover project folders
+        id: discover
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Top-level directories that look like projects
+          # (exclude common non-project folders)
+          exclude_regex='^(\.github|\.git|node_modules|__tests__|\.vscode)$'
+          mapfile -t dirs < <(find . -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | grep -Ev "$exclude_regex" || true)
+
+          echo "Discovered: ${dirs[*]:-none}"
+          # Emit as JSON for the matrix
+          json="["
+          first=1
+          for d in "${dirs[@]}"; do
+            # Skip hidden folders
+            [[ "$d" =~ ^\. ]] && continue
+            # Skip if no files inside (rare)
+            if [[ ! -d "$d" ]]; then continue; fi
+            if [[ $first -eq 0 ]]; then json+=","; fi
+            json+="\"$d\""
+            first=0
+          done
+          json+="]"
+
+          echo "matrix=${json}"
+          echo "matrix=${json}" >> "$GITHUB_OUTPUT"
+
+      - name: Build (best-effort) and archive
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Re-create the matrix locally from output
+          projects_json='${{ steps.discover.outputs.matrix }}'
+          echo "Projects matrix: $projects_json"
+
+          # If jq exists, use it; otherwise fallback to simple parsing
+          if command -v jq >/dev/null 2>&1; then
+            projects=$(echo "$projects_json" | jq -r '.[]')
+          else
+            # Very small fallback; assumes simple strings
+            projects=$(echo "$projects_json" | sed -e 's/^\[//' -e 's/\]$//' -e 's/"//g' -e 's/,/\n/g' )
+          fi
+
+          mkdir -p artifacts
+
+          for project in $projects; do
+            echo "----"
+            echo "Project: $project"
+            cd "$GITHUB_WORKSPACE/$project"
+
+            # Best-effort: try the most common build types.
+            # - Node: package.json
+            # - Python: requirements.txt
+            # - Static: index.html
+            # We won't fail the whole workflow if a project can't build.
+
+            if [[ -f package.json ]]; then
+              echo "Detected package.json; attempting npm ci && build"
+              if [ -f package-lock.json ]; then npm ci; else npm install; fi
+              if npm run -s build; then
+                echo "Build ok for $project"
+              else
+                echo "Build step failed for $project (continuing)"
+              fi
+            elif [[ -f requirements.txt ]]; then
+              echo "Detected requirements.txt; attempting python -m compileall"
+              python -m pip install -r requirements.txt || true
+              python -m compileall . || true
+            fi
+
+            # If build output exists, zip it.
+            # Common output dirs:
+            # - dist, build, public, out
+            outdir=""
+            for cand in dist build public out; do
+              if [[ -d "$cand" ]]; then outdir="$cand"; break; fi
+            done
+
+            if [[ -n "$outdir" ]]; then
+              echo "Archiving output dir: $outdir"
+              cd "$GITHUB_WORKSPACE/$project"
+              zip -r "$GITHUB_WORKSPACE/artifacts/$project-$outdir.zip" "$outdir" >/dev/null
+            elif [[ -f index.html ]]; then
+              echo "Archiving single-file site (index.html)"
+              cd "$GITHUB_WORKSPACE/$project"
+              zip -r "$GITHUB_WORKSPACE/artifacts/$project-site.zip" index.html >/dev/null
+            else
+              echo "No obvious build output found for $project; skipping zip"
+            fi
+
+            cd "$GITHUB_WORKSPACE"
+          done
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: archived-build-artifacts
+          path: artifacts/*.zip
+          if-no-files-found: warn
