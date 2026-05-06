@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Localhost Site Embedder</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Localhost Embedder</h1>
+      <p class="subtitle">Paste localhost URLs and embed them using <code>src</code> in an iframe.</p>
+    </header>
+
+    <section class="card controls">
+      <div class="row">
+        <label for="urlsInput">Local URLs (one per line)</label>
+        <textarea id="urlsInput" rows="6" spellcheck="false" placeholder="http://localhost:3000\nhttp://localhost:8080/your-app"></textarea>
+      </div>
+
+      <div class="row actions">
+        <div class="presets">
+          <span class="label">Presets:</span>
+          <button type="button" class="pill" data-preset="3000">localhost:3000</button>
+          <button type="button" class="pill" data-preset="8080">localhost:8080</button>
+          <button type="button" class="pill" data-preset="5173">localhost:5173</button>
+          <button type="button" id="allPresetsBtn" class="pill all-presets">Add all</button>
+        </div>
+
+        <div class="btns">
+          <button type="button" id="embedBtn">Embed</button>
+          <button type="button" id="clearBtn" class="secondary">Clear</button>
+        </div>
+      </div>
+
+      <div id="status" class="status" aria-live="polite"></div>
+    </section>
+
+    <section class="card output">
+      <div class="outputHeader">
+        <h2>Embedded Sites</h2>
+        <div class="hint">Each entry becomes one iframe.</div>
+      </div>
+
+      <div id="iframesGrid" class="grid" aria-label="Embedded iframes"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="note">
+        Tip: the embedded sites must send proper headers for framing (some apps set <code>X-Frame-Options</code> / <code>CSP frame-ancestors</code> to block iframes).
+      </div>
+    </footer>
+  </div>
+
+  <script src="src/embedder.js"></script>
+</body>
+</html>
+

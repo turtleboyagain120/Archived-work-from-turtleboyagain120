@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        #ff0000,
+        #ff0000 10px,
+        #ffff00 10px,
+        #ffff00 20px,
+        #00ff00 20px,
+        #00ff00 30px,
+        #00ffff 30px,
+        #00ffff 40px,
+        #0000ff 40px,
+        #0000ff 50px,
+        #ff00ff 50px,
+        #ff00ff 60px
+    );
+    font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 10px ridge #ff00ff;
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.8);
+}
+
+h1 {
+    text-align: center;
+    color: #ff0000;
+    text-shadow: 2px 2px #00ffff;
+    font-size: 3em;
+    margin: 0;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.version {
+    font-size: 0.3em;
+    color: #666;
+    display: block;
+    text-shadow: none;
+    animation: none;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+#urlInput {
+    flex: 1;
+    max-width: 600px;
+    padding: 15px;
+    font-size: 16px;
+    border: 5px inset #ff00ff;
+    font-family: monospace;
+    background: #000;
+    color: #0f0;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(to bottom, #ff0000, #00ff00);
+    color: white;
+    border: 5px outset #ffff00;
+    cursor: pointer;
+    font-family: "Comic Sans MS", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #00ff00, #ff0000);
+    transform: scale(1.1) rotate(2deg);
+}
+
+button:active {
+    transform: scale(0.9) rotate(-2deg);
+}
+
+.methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    background: #f0f0f0;
+    padding: 15px;
+    border: 3px dashed #666;
+}
+
+.methods label {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.methods input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.status {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    min-height: 40px;
+    border: 2px solid #ccc;
+    background: #222;
+    color: #0f0;
+    font-family: monospace;
+}
+
+.iframe-container {
+    width: 100%;
+    height: 600px;
+    border: 20px groove #00ffff;
+    background: #000;
+    position: relative;
+    overflow: auto;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.placeholder {
+    color: #666;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 1.5em;
+}
+
+.method-frame {
+    margin: 10px 0;
+    padding: 10px;
+    border: 5px double #ff00ff;
+    background: rgba(255, 0, 255, 0.1);
+}
+
+.method-title {
+    font-weight: bold;
+    color: #ff0000;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+

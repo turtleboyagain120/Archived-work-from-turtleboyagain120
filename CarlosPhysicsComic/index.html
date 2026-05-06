@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos and the Physics Notepad - Comic Book</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="comic-container">
+        <div class="page" id="page-1">
+            <h1>Carlos and the Physics Notepad</h1>
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <rect width="400" height="300" fill="#87CEEB"/> <!-- Sky -->
+                    <rect y="200" width="400" height="100" fill="#228B22"/> <!-- Ground -->
+                    <rect x="150" y="150" width="100" height="80" fill="#8B4513" stroke="#654321" stroke-width="2"/> <!-- House -->
+                    <rect x="170" y="170" width="60" height="40" fill="#FFFFE0"/> <!-- Window -->
+                    <circle cx="300" cy="220" r="30" fill="#FF8C00"/> <!-- Sun -->
+                    <text x="200" y="100" font-size="20" fill="#000" text-anchor="middle">265 Hayden Ln, North Carolina</text>
+                    <text x="200" y="280" font-size="18" fill="#000" text-anchor="middle">Carlos&#39;s Home</text>
+                </svg>
+                <div class="caption">There was a man called Carlos, a Spanish scientist exploring the laws of physics.</div>
+            </div>
+        </div>
+
+        <div class="page" id="page-2" style="display:none;">
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <rect width="400" height="300" fill="#8B4513"/> <!-- Basement -->
+                    <rect x="100" y="100" width="80" height="60" fill="#F5DEB3" stroke="#D2B48C" stroke-width="3"/> <!-- Notepad -->
+                    <text x="140" y="150" font-size="16" fill="#000" text-anchor="middle">? ? ?</text>
+                    <circle cx="200" cy="150" r="40" fill="#FFDBAC"/> <!-- Carlos head -->
+                    <rect x="170" y="190" width="60" height="80" fill="#4169E1"/> <!-- Body -->
+                    <text x="200" y="290" font-size="18" fill="#000" text-anchor="middle">Old smelling notepad!</text>
+                </svg>
+                <div class="caption">One day in his basement, he found an old smelling notepad with math questions.</div>
+            </div>
+        </div>
+
+        <div class="page" id="page-3" style="display:none;">
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <rect x="100" y="100" width="80" height="60" fill="#F5DEB3"/>
+                    <line x1="140" y1="130" x2="300" y2="50" stroke="#FF0000" stroke-width="3"/> <!-- Revelation lines -->
+                    <text x="200" y="200" font-size="24" fill="#FF0000" text-anchor="middle" font-weight="bold">ARMY HOLDS PHYSICS LAWS!</text>
+                    <circle cx="250" cy="150" r="40" fill="#FFDBAC"/>
+                    <rect x="220" y="190" width="60" height="60" fill="#4169E1"/>
+                </svg>
+                <div class="caption">The more he looked, the clearer it became: the army held the laws of physics!</div>
+            </div>
+        </div>
+
+        <div class="page" id="page-4" style="display:none;">
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <rect width="400" height="300" fill="#D3D3D3"/>
+                    <rect x="50" y="100" width="100" height="60" fill="#808080"/> <!-- Car -->
+                    <circle cx="80" cy="200" r="15" fill="#000"/>
+                    <circle cx="130" cy="200" r="15" fill="#000"/>
+                    <path d="M30 250 Q200 300 370 250" stroke="#FFA500" stroke-width="40" fill="none"/> <!-- Road -->
+                    <text x="200" y="280" font-size="20" fill="#000" text-anchor="middle">5 Hour Drive</text>
+                </svg>
+                <div class="caption">Carlos took a boring 5-hour drive to the army base.</div>
+            </div>
+        </div>
+
+        <div class="page" id="page-5" style="display:none;">
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <rect x="100" y="50" width="200" height="150" fill="#556B2F" stroke="#000" stroke-width="4"/> <!-- Army base -->
+                    <circle cx="200" cy="150" r="40" fill="#FFDBAC"/>
+                    <rect x="170" y="190" width="60" height="60" fill="#FF0000"/> <!-- Uniform -->
+                    <rect x="280" y="100" width="80" height="80" fill="#8B0000"/> <!-- Soldier -->
+                    <text x="200" y="280" font-size="18" fill="#000" text-anchor="middle">NO ANSWER!</text>
+                </svg>
+                <div class="caption">He asked about the laws of physics, but the army refused to answer.</div>
+            </div>
+        </div>
+
+        <div class="page" id="page-6" style="display:none;">
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <path d="M30 250 Q200 220 370 250" stroke="#FFA500" stroke-width="50" fill="none"/>
+                    <rect x="50" y="100" width="100" height="60" fill="#808080"/>
+                    <circle cx="80" cy="200" r="15" fill="#000"/>
+                    <circle cx="130" cy="200" r="15" fill="#000"/>
+                    <text x="200" y="280" font-size="20" fill="#000" text-anchor="middle">1 Day Drive Back (Traffic!)</text>
+                </svg>
+                <div class="caption">He took a 1-day drive back home... stuck in traffic.</div>
+            </div>
+        </div>
+
+        <div class="page" id="page-7" style="display:none;">
+            <div class="panel">
+                <svg viewBox="0 0 400 300" class="panel-svg">
+                    <rect x="150" y="150" width="100" height="80" fill="#696969" stroke="#000" stroke-width="4"/> <!-- Destroyed house -->
+                    <circle cx="200" cy="100" r="50" fill="#FFFF00"/> <!-- Explosion -->
+                    <rect x="100" y="50" width="200" height="100" fill="#00FF00" opacity="0.5"/> <!-- Nuclear facility -->
+                    <circle cx="250" cy="250" r="40" fill="#FFDBAC"/>
+                    <rect x="220" y="290" width="60" height="20" fill="#4169E1"/>
+                    <text x="200" y="280" font-size="18" fill="#000" text-anchor="middle">Hotdog smell?</text>
+                </svg>
+                <div class="caption">His house was destroyed by a nuclear facility. It smelled more like hotdogs than smoke.</div>
+            </div>
+            <div class="the-end">The End</div>
+        </div>
+
+        <nav class="comic-nav">
+            <button id="prev"><< Prev</button>
+            <button id="next">Next >></button>
+        </nav>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

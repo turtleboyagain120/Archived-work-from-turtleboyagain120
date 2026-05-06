@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Very Normal Website Unblocker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Website Unblocker <span class="version">v0.0.0.0.0.1-alpha-rc-final-2-really</span></h1>
+        <p class="subtitle">Guaranteed to work maybe sometimes (not guaranteed)</p>
+        
+        <div class="input-area">
+            <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://example.com)" value="https://example.com">
+            <button onclick="unblock()">UNBLOCK (TRUST ME)</button>
+        </div>
+
+        <div class="methods">
+            <label><input type="checkbox" id="method1" checked> Method 1: Nested Inception Iframes</label>
+            <label><input type="checkbox" id="method2" checked> Method 2: Base64 Soup</label>
+            <label><input type="checkbox" id="method3" checked> Method 3: document.write Madness</label>
+            <label><input type="checkbox" id="method4" checked> Method 4: Blob URL Redirect Chain</label>
+            <label><input type="checkbox" id="method5" checked> Method 5: Data URI Meta Refresh</label>
+            <label><input type="checkbox" id="method6" checked> Method 6: window.open() Inside Iframe</label>
+            <label><input type="checkbox" id="method7" checked> Method 7: Form POST Target</label>
+            <label><input type="checkbox" id="method8" checked> Method 8: Service Worker Promise (Broken)</label>
+        </div>
+
+        <div id="status" class="status"></div>
+        
+        <div id="iframeContainer" class="iframe-container">
+            <p class="placeholder">Enter a URL above and click the button to unleash the horrors...</p>
+        </div>
+    </div>
+
+    <script src="horrible-methods.js"></script>
+</body>
+</html>
+

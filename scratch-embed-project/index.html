@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch Project Embed - ID 1310224489</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+        .embed-container {
+            position: relative;
+            width: 485px;
+            height: 402px;
+            border: 0;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 500px) {
+            .embed-container {
+                width: 100%;
+                height: 60vw;
+            }
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scratch Project: See inside this project (part 2)</h1>
+    <p>Embedded Scratch project ID: <a href="https://scratch.mit.edu/projects/1310224489/" target="_blank">1310224489</a> by <a href="https://scratch.mit.edu/users/Osslicense/" target="_blank">Osslicense</a></p>
+    <div class="embed-container">
+        <iframe src="https://scratch.mit.edu/projects/1310224489/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+    <div class="controls">
+        <button onclick="toggleFullscreen()">Toggle Fullscreen</button>
+        <button onclick="openProject()">Open Full Project</button>
+    </div>
+
+    <script>
+        function toggleFullscreen() {
+            const container = document.querySelector('.embed-container');
+            if (!document.fullscreenElement) {
+                container.requestFullscreen().catch(err => {
+                    alert('Fullscreen not supported: ' + err.message);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function openProject() {
+            window.open('https://scratch.mit.edu/projects/1310224489/', '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Honest Adventures of Super Carlos! (Captain Underpants Style)</title>
+    <style>
+        body { font-family: 'Comic Sans MS', cursive; background: #ffffcc; color: #333; margin: 0; padding: 20px; }
+        .page { height: 80vh; width: 100vw; page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 2px dashed #ff6600; margin: 10px 0; padding: 20px; background: white; box-shadow: 5px 5px 10px rgba(0,0,0,0.2); }
+        h1, h2 { color: #ff0000; font-size: 2em; text-shadow: 2px 2px #ffff00; }
+        p { font-size: 1.2em; line-height: 1.5; }
+        .illustration { font-size: 0.8em; font-style: italic; color: #666; margin: 10px 0; border: 1px dotted #ccc; padding: 10px; background: #f0f8ff; }
+        .flip-o-rama { background: #ffebcc; border: 3px double #ff6600; padding: 15px; margin: 10px 0; }
+        .flip-frame { font-weight: bold; color: #0066cc; margin: 5px 0; }
+        @media print { 
+            .page { page-break-after: always; } 
+            button:not([onclick="window.print()"]) { display: none !important; }
+            .flip-animation { animation: none !important; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page { height: 100vh; padding: 10px; font-size: 0.9em; }
+            h1, h2 { font-size: 1.5em; }
+            .flip-container { perspective: 500px; }
+        }
+        button { background: #ff6600; color: white; border: none; padding: 10px 20px; font-size: 1.1em; cursor: pointer; font-family: inherit; }
+
+        /* Flip-O-Rama Animation */
+        @keyframes flipBackForth {
+          0%, 50% { transform: rotateY(0deg); }
+          25%, 75% { transform: rotateY(180deg); }
+        }
+        .flip-container {
+          perspective: 1000px;
+          margin: 10px 0;
+        }
+        .flip-frame {
+          transition: transform 0.2s;
+          backface-visibility: hidden;
+        }
+        .flip-animation {
+          animation: flipBackForth 2s infinite; /* Full cycle ~2s for visibility, internal 0.2s steps via keyframe */
+        }
+    </style>
+</head>
+<body>
+    <div class="page" id="page1">
+        <h1>The Honest Adventures<br>of Super Carlos!</h1>
+        <p>By Dav Pilkey Wannabe<br>(Your Friendly Neighborhood AI)</p>
+        <p>Illustrated by BLACKBOXAI</p>
+        <div class="illustration">
+            [Drawing of Carlos with wild hair, holding a glowing ring, standing in front of a exploding house that smells like hotdogs!]
+        </div>
+        <p><em>20 Pages of Pure Chaos!</em></p>
+    </div>
+
+    <div class="page" id="page2">
+        <h2>Chapter 1: The Smelly Notepad</h2>
+        <p>There was a man called Carlos, a Spanish scientist who loved exploring the laws of physics. He lived at 265 Hayden Ln, North Carolina.</p>
+        <div class="illustration">
+            [Carlos in basement, nose wrinkled, holding dusty notepad with math scribbles turning into army secrets!]
+        </div>
+        <p>One day, he found an OLD SMELLING NOTEPAD in his basement!</p>
+    </div>
+
+    <div class="page" id="page3">
+        <p>Inside were math questions... but then BOOM! Secrets about the laws of physics held by the ARMY!</p>
+        <div class="illustration">
+            [Notepad pages flipping: numbers → tanks → physics formulas locked in chains!]
+        </div>
+        <p>"I must go to the army!" said Carlos.</p>
+    </div>
+
+    <div class="page" id="page4">
+        <h2>Chapter 2: The Boring Drive</h2>
+        <p>Carlos took a BORING 5-HOUR DRIVE to the army base.</p>
+        <div class="illustration">
+            [Carlos yawning in car, road stretching forever, clock showing 5 hours!]
+        </div>
+        <p>"Tell me about the physics laws!" he asked.<br>"NOPE!" said the army. Denied!</p>
+    </div>
+
+    <div class="page" id="page5">
+        <p>Back home: 1 DAY DRIVE (TRAFFIC JAM!) And... HIS HOUSE WAS DESTROYED!</p>
+        <div class="illustration">
+            [Rubble of house, nuclear facility bulldozers, smoke shaped like hotdogs!]
+        </div>
+        <p>It smelled like HOTDOGS, not smoke!</p>
+    </div>
+
+    <div class="page" id="page6">
+        <h2>Chapter 3: The Defyn Ring!</h2>
+        <p>Carlos grabbed his DEBIL 2X000 RING that turns anyone into an HONEST 10-YEAR-OLD!</p>
+        <div class="illustration">
+            [Shiny ring glowing green, Carlos putting it on, facility workers turning kid-like!]
+        </div>
+        <p>ZAP! He used it on the facility!</p>
+    </div>
+
+    <div class="page" id="page7">
+        <p>The facility got SO HONEST, it ATTACKED Carlos! But it forgot how to WALK!</p>
+        <div class="flip-o-rama">
+            <button id="flip-btn-7" onclick="startFlipORama('flip-container-7')">Flip-O-Rama!</button>
+            <div id="flip-container-7" class="flip-container">
+                <div class="flip-frame">Frame 1: Grumpy Facility stomping!</div>
+                <div class="flip-frame">Frame 2: Facility tripping over feet!</div>
+                <div class="flip-frame">Frame 3: Time eating the facility like cookie crumbs!</div>
+            </div>
+        </div>
+        <p>Carlos ran away!</p>
+    </div>
+
+    <div class="page" id="page8">
+        <p>Workers confused—even Carlos! He zapped the WORKERS instead.</p>
+        <div class="illustration">
+            [Kid-workers with snot noses confessing: "The answer is in Earth's center!"]
+        </div>
+        <p>"It's HIDDEN INSIDE THE EARTH!" they squealed.</p>
+    </div>
+
+    <div class="page" id="page9">
+        <h2>Chapter 4: Spanks and Chainsaws</h2>
+        <p>Carlos SPANKED HIMSELF 50 TIMES for being silly, then grabbed a CHAUSAW!</p>
+        <div class="illustration">
+            [Carlos red-butt, wielding buzzing chainsaw, digging down!]
+        </div>
+        <p>It was FAST and UNCONTROLLABLE!</p>
+    </div>
+
+    <div class="page" id="page10">
+        <p>He drilled to the CENTER OF THE EARTH!</p>
+        <div class="flip-o-rama">
+            <div class="flip-frame">Frame 1: Chainsaw slicing dirt!</div>
+            <div class="flip-frame">Frame 2: Lava dodging!</div>
+            <div class="flip-frame">Frame 3: CORE!</div>
+        </div>
+    </div>
+
+    <div class="page" id="page11">
+        <h2>Chapter 5: The Big Red Giant</h2>
+        <p>There it was: A BIG RED GIANT BALL rickrolling Carlos!</p>
+        <div class="illustration">
+            [Huge red ball with Rick Astley face, dancing, "Never gonna give you up!"]
+        </div>
+        <p>"WHAT!?" yelled Carlos.</p>
+    &;/div>
+
+    <div class="page" id="page12">
+        <p>The giant ball sang: "Never gonna give you up, never gonna let you down..."</p>
+        <div class="flip-o-rama">
+            <div class="flip-frame">Frame 1: Carlos shocked!</div>
+            <div class="flip-frame">Frame 2: Dancing ball!</div>
+            <div class="flip-frame">Frame 3: Physics laws revealed as Rickroll lyrics!</div>
+        </div>
+    </div>
+
+    <div class="page" id="page13">
+        <p>Carlos laughed so hard, the center shook! Secrets everywhere!</p>
+        <div class="illustration">
+            [Exploding core, formulas flying like confetti!]
+        </div>
+    </div>
+
+    <div class="page" id="page14">
+        <h2>Epilogue: Super Carlos!</h2>
+        <p>Carlos became SUPER CARLOS, defender of silly physics!</p>
+        <div class="illustration">
+            [Cape-wearing Carlos, ring on finger, hotdog house rebuilt!]
+        </div>
+    </div>
+
+    <div class="page" id="page15">
+        <p>The army apologized (honestly). Facility became a hotdog stand.</p>
+        <div class="illustration">
+            [Happy endings all around!]
+        </div>
+    </div>
+
+    <div class="page" id="page16">
+        <h2>Flip-O-Rama Time!</h2>
+        <p>Super Carlos vs. Rickball! (Flip fast!)</p>
+        <div class="flip-o-rama">
+            <div class="flip-frame">Punch!</div>
+            <div class="flip-frame">Rickroll dodge!</div>
+            <div class="flip-frame">Honest high-five!</div>
+        </div>
+    </div>
+
+    <div class="page" id="page17">
+        <p>More adventures? Stay tuned!</p>
+        <div class="illustration">
+            [To be continued... with more rings and rickrolls!]
+        </div>
+    </div>
+
+    <div class="page" id="page18">
+        <h2>Captain Underpants Tips</h2>
+        <p>1. Always check basements for smelly notepads.<br>2. Honest rings beat grumpy facilities.</p>
+        <div class="illustration">
+            [Tip comic strip!]
+        </div>
+    </div>
+
+    <div class="page" id="page19">
+        <p>3. Chainsaws to Earth's core: Recommended!<br>4. Beware rickrolling balls.</p>
+    </div>
+
+    <div class="page" id="page20">
+        <h1>The End!</h1>
+        <p>Monday, May 4, 2026<br>1:07 PM</p>
+        <div class="illustration">
+            [Carlos waving goodbye, hotdog in hand!]
+        </div>
+        <p><button onclick="window.print()">Print This Book!</button></p>
+    </div>
+
+    <script>
+        // Simple page flip simulation
+        let currentPage = 1;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                document.getElementById(`page${currentPage}`).style.display = 'none';
+                currentPage = Math.min(20, currentPage + 1);
+                document.getElementById(`page${currentPage}`).scrollIntoView();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById(`page${currentPage}`).style.display = 'none';
+                currentPage = Math.max(1, currentPage - 1);
+                document.getElementById(`page${currentPage}`).scrollIntoView();
+            }
+        });
+
+        // Flip-O-Rama Animation: 5 cycles (back/forth every 0.2s via keyframe)
+        function startFlipORama(containerId) {
+            const container = document.getElementById(containerId);
+            const btn = document.getElementById('flip-btn-7');
+            btn.textContent = 'Flipping...';
+            btn.disabled = true;
+            container.classList.add('flip-animation');
+            setTimeout(() => {
+                container.classList.remove('flip-animation');
+                btn.textContent = 'Flip-O-Rama!';
+                btn.disabled = false;
+            }, 10000); // 2s per cycle * 5 = 10s
+        }
+    </script>
+</body>
+</html>

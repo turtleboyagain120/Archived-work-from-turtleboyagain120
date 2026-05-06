@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restricted website - Microsoft Family Safety</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+                <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+                <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+                <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+            </svg>
+            <span>Microsoft</span>
+        </div>
+        
+        <div class="content">
+            <h1>You've reached a restricted website</h1>
+            <p class="description">
+                This website is blocked because of your family's safety settings.
+            </p>
+            
+            <div class="details-box">
+                <div class="detail-item">
+                    <span class="label">Website:</span>
+                    <span class="value" id="blockedUrl">Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Reason:</span>
+                    <span class="value" id="reasonCode">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="requestBtn" class="primary-btn">Request permission</button>
+                <a href="#" id="signOutLink" class="secondary-link">Sign out</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Microsoft Family Safety</p>
+        </div>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Request sent</h2>
+            <p>Your request to access this website has been sent to your parent.</p>
+            <button id="closeModal" class="primary-btn">OK</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

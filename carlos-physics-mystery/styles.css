@@ -1,0 +1,95 @@
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(to bottom, #87CEEB, #98FB98);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.comic-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page {
+    background: white;
+    border: 5px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    color: #FF4500;
+    font-size: 2.5em;
+    text-shadow: 2px 2px #FFD700;
+}
+
+h2 {
+    text-align: center;
+    color: #4169E1;
+}
+
+.panel {
+    background: #FFFACD;
+    border: 3px dashed #000;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.panel:nth-child(even) {
+    background: #E0FFFF;
+}
+
+.visual {
+    font-size: 3em;
+    text-align: center;
+    margin: 10px 0;
+    background: #F0F8FF;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background: #FF69B4;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background: #FF1493;
+    transform: scale(1.05);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#page-info {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #8B4513;
+}

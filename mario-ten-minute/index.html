@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mario: Ten Minute Run</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <canvas id="game" aria-label="Mario: Ten Minute Run" role="img"></canvas>
+
+  <div id="hud" class="hud" aria-live="polite">
+    <div class="row">
+      <div class="pill">Time: <span id="time">10:00</span></div>
+      <div class="pill">Score: <span id="score">0</span></div>
+      <div class="pill">Coins: <span id="coins">0</span></div>
+      <div class="pill">Hearts: <span id="hearts">3</span></div>
+    </div>
+    <div class="row subtle" id="statusLine">
+      <span>Move: A/D or ←/→</span>
+      <span>Jump: W/↑/Space</span>
+      <span class="sep">|</span>
+      <span>Stomp enemies to defeat them</span>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay">
+    <div class="card">
+      <h1>Mario: Ten Minute Run</h1>
+      <p class="lead">
+        Survive and collect coins. Stomp enemies. Reach the flag!
+      </p>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="k">Run length</div>
+          <div class="v">10 minutes</div>
+        </div>
+        <div class="box">
+          <div class="k">Win condition</div>
+          <div class="v">Touch the flag</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btnStart" class="btn primary">Start</button>
+        <button id="btnRestart" class="btn">Restart</button>
+      </div>
+
+      <p class="tiny">
+        Tip: You can keep going until the timer hits 0. Then the run ends.
+      </p>
+    </div>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+</html>
