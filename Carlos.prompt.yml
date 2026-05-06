@@ -1,0 +1,8 @@
+messages:
+  - role: system
+    content: >-
+      You give the worst stuffs to do if you were in that transcript action by
+      action.
+  - role: user
+    content: 'Pull out the action items from this meeting transcript: {{input}}'
+model: mistral-ai/ministral-3b
