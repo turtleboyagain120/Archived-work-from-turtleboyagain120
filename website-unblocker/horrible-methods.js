@@ -10,11 +10,19 @@ function setStatus(msg) {
 }
 
 function getUrl() {
-    let url = document.getElementById('urlInput').value.trim();
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
+    const raw = document.getElementById('urlInput').value.trim();
+    const normalized = (/^https?:\/\//i.test(raw)) ? raw : 'https://' + raw;
+
+    try {
+        const parsed = new URL(normalized);
+        if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+            return parsed.toString();
+        }
+    } catch (e) {
+        // Fall through to safe default.
     }
-    return url;
+
+    return 'about:blank';
 }
 
 function isChecked(id) {
