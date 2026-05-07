@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>dan-theories</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:24px;line-height:1.45}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    a.card{display:block;padding:14px;border:1px solid #ddd;border-radius:12px;text-decoration:none;color:inherit;background:#fafafa}
+    a.card:hover{background:#f2f2f2}
+    .muted{color:#666;font-size:13px}
+  </style>
+</head>
+<body>
+  <h1>dan-theories</h1>
+  <p class="muted">8 message-style HTML pages + 8 paired JSON payloads. (No binary / no “lost content” artifacts.)</p>
+
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const items = [
+      { id: "dan-~1", label: "Carlos still awaits" },
+      { id: "dan-~2", label: "Afterlife / above-below" },
+      { id: "dan-~3", label: "Conspiracy: rules kept" },
+      { id: "dan-~4", label: "Not scary theory" },
+      { id: "dan-~5", label: "Rickr-echo variant" },
+      { id: "dan-~6", label: "Liquid sun blob" },
+      { id: "dan-~7", label: "Earthians addendum" },
+      { id: "dan-~8", label: "Final-escape message" }
+    ];
+
+    const grid = document.getElementById('grid');
+    items.forEach(it => {
+      const a = document.createElement('a');
+      a.className = 'card';
+      a.href = `${it.id}.html`;
+      a.innerHTML = `<div><strong>${it.label}</strong></div><div class="muted">${it.id}</div>`;
+      grid.appendChild(a);
+    });
+  </script>
+</body>
+</html>
+
