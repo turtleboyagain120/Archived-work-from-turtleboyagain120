@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Read-Aloud + Theory Index</title>
+  <link rel="stylesheet" href="./physics-archive-quest/style.css" />
+  <style>
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#0b1020;color:rgba(255,255,255,.92)}
+    .wrap{max-width:1050px;margin:0 auto;padding:18px}
+    .card{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.18);border-radius:16px;padding:16px;margin:14px 0}
+    header{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+    h1{font-size:18px;margin:0}
+    .sub{color:rgba(255,255,255,.66);font-size:13px;margin-top:6px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    button{cursor:pointer;border:1px solid rgba(124,247,201,.45);background:rgba(124,247,201,.12);color:#fff;padding:10px 12px;border-radius:12px;font-weight:700}
+    button:hover{background:rgba(124,247,201,.18)}
+    textarea{width:100%;min-height:120px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;padding:12px}
+    .theories{display:grid;grid-template-columns:1fr;gap:12px}
+    .theory{background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px}
+    .theory h3{margin:0 0 6px;font-size:14px}
+    .theory .meta{color:rgba(255,255,255,.62);font-size:12px;margin-bottom:10px}
+    .theory pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:13px;color:rgba(255,255,255,.86)}
+    .pill{display:inline-block;border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:999px;font-size:12px;color:rgba(255,255,255,.66);background:rgba(255,255,255,.04)}
+    .panelbar{display:flex;gap:10px;flex-wrap:wrap}
+    .bar{height:10px;border-radius:999px;flex:1;background:rgba(255,255,255,.08);overflow:hidden;min-width:180px}
+    .bar > i{display:block;height:100%;width:20%;background:linear-gradient(90deg, rgba(124,247,201,.9), rgba(255,211,107,.7));transform:translateX(-20%);animation:drift 2.4s linear infinite}
+    @keyframes drift{0%{transform:translateX(-30%)}100%{transform:translateX(120%)} }
+    .vis{display:none}
+    .small{font-size:12px;color:rgba(255,255,255,.68)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Archive Theory Vault — Read-Aloud First</h1>
+        <div class="sub">A messy comic archive index. Audio-first UI + many theories with line references (L) and theory IDs (T).</div>
+      </div>
+      <div class="panelbar">
+        <span class="pill" id="statusPill">status: waiting</span>
+        <div class="bar" aria-hidden="true"><i></i></div>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div style="font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:12px;color:rgba(255,255,255,.72)">1) Paste or edit the story (text-to-speech)</div>
+          <div class="small">Click “Read story aloud” before you press “Reveal theories”.</div>
+        </div>
+        <div class="row">
+          <button id="readBtn" type="button">Read story aloud</button>
+          <button id="revealBtn" type="button" disabled>Reveal 12+ theories</button>
+        </div>
+      </div>
+      <div style="height:10px"></div>
+      <textarea id="storyText" spellcheck="false">
+1. Its not even the end. Carlos still awaits:
+There was a man called Carlos, A Spain scientist who is exploring the laws of physics. One day at his house in 265 Hayden ln north Carolina, He found an old smelling notepad in the basement. It looked like some math questions were inside of it, A kid screaming "2=l sybolic stuf x.2=l" but the more he looked inside the notepad, the more clear it came that the laws of physics were held by the army of nations to come. So Carlos took a boring 5 hour drive to the army where he asked his question about the laws of physics, but the army refused to answer. So he took a 1 day drive back to home (traffic) and saw his house was destroyed by a nuclear facility trying to take that area. It smelled more like hotdogs then smoke to be honest. So he grabbed is defyn 2x000 ring that turns anyone into a honest 10 years old. And he uses it against the force of the facility. Then the facility was so honest, It attacked Carlos. The Grumpy facility forgot how to walk so Carlos ran away as time ate the facility. All the workers were confused even Carlos. And then Carlos tried it on the workers instead of the facility . And they said the answer was hidden inside of the earth. So Carlos spanked himself 50 times then grabbed a chainsaw. It was fast and uncontrollable, but at least he made it to the center of the earth. To see a big red giant ball Rickr-
+
+2. NOT OF THE DEAD BUT FROM THE DEAD THAT ARISES FROM THE DEAD OF THE AFTERLIFE:
+So then Carlos tried the back door of the red, giant, rickrolling ball. "And shall everyone escape not" Carlos cried in sorrow. Just figuring out the equation to the notepad was just a suggestion of a world filled of blank. "WE TRIED, IT WAS MELTING" Said in sorrow the giant, big, red sun. then more into the fact this felt dark and lonely more of the time even with the son, not including the son of Jesus which is another story in the bible. But "Shall the light be darkened by 40%" The sun said. But ever wondered how they escaped? Rather the fact you should be asking is, "What is above and below where they are. And in no place shall they ever morn to fire in the darkest places of depart and rejoice" "But your teacher, sun" Said Carlos "Which may be you. Have descended into the world filled with flies of darkness" And the sun did not dwelt. Nor answer. As the earth ages the sun was always in the earth in the form of a liquid blob. Nor suggest why we are melting. More dreamlike as it felt since the sudden slam on the ground last hour. And thou this may teach our sun, the teacher of the earth since release day. "KID" yelled the sun, Yielding a ton of energy. But Carlos cannot speak. Then he clouded through the earth through the unbreathable oxygen. Then the sun was lost. "And foal this be another failed simulation" Said the earthians, earth people who made more then and other then 900 comics. More then the earth could pressure himself. "This is getting about-" said earthain one. Blobby as they felt like a dream. Surfactant in darkness. Nah as they walked in pressure as tough as metal fused into your skin with no bones to stabilize it.
+      </textarea>
+      <div style="height:10px"></div>
+      <div class="small">Animation: a “scan bar” drifts while the app is ready. TTS is used only to read your story aloud (no external calls).</div>
+    </div>
+
+    <div class="card" id="theoryCard" style="display:none">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div style="font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:12px;color:rgba(255,255,255,.72)">2) Theories (>= 12) — link to story lines by L</div>
+          <div class="small">Read-aloud first is enforced: if you didn’t read, this stays locked.</div>
+        </div>
+        <div class="row">
+          <button id="stopBtn" type="button">Stop audio</button>
+        </div>
+      </div>
+
+      <div style="height:10px"></div>
+
+      <div class="theories" id="theories"></div>
+      <div class="small" style="margin-top:12px">
+        Legend: <b>L</b>=story line index (in this page). <b>T</b>=theory id. Quotes are paraphrased; story text is what you pasted.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const storyEl = document.getElementById('storyText');
+    const readBtn = document.getElementById('readBtn');
+    const revealBtn = document.getElementById('revealBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const theoryCard = document.getElementById('theoryCard');
+    const theoriesEl = document.getElementById('theories');
+    const statusPill = document.getElementById('statusPill');
+
+    let isRead = false;
+    let utterance = null;
+
+    function splitToLines(text){
+      return text
+        .replace(/\r/g,'')
+        .split(/\n+/)
+        .map(s=>s.trim())
+        .filter(Boolean);
+    }
+
+    function lineRefs(lines){
+      // Provide stable L references using the pasted content.
+      // We map a few key phrases to nearest line indices.
+      const findLine = (needle) => {
+        const idx = lines.findIndex(l => l.toLowerCase().includes(needle));
+        return idx >= 0 ? idx+1 : null; // L starts at 1
+      };
+      return {
+        L1: findLine('1.') || 1,
+        LescapeNot: findLine('escape not'),
+        Lmelting: findLine('melting'),
+        L40: findLine('darkened by 40'),
+        Labsurd: findLine('flies of darkness') || findLine('flies'),
+        LliquidBlob: findLine('liquid blob'),
+        LcannotSpeak: findLine('cannot speak'),
+        Lunbreathable: findLine('unbreathable oxygen'),
+        L2: findLine('2.') || 2
+      };
+    }
+
+    const baseTheories = [
+      { id:'T1', name:'Notepad = a filter (not a finished book)',
+        cite:['L1','Lmelting'], citeText:'WE TRIED, IT WAS MELTING / suggestion of a world filled of blank',
+        body:[
+          'It could be that the notepad stores a process, not an end-state.',
+          'The story keeps describing “blank” rather than an answer.',
+          'When the mind tries to complete the process too early, everything feels unstable.',
+          'That would explain why “melting” is a reaction to understanding, not to physical damage.',
+          'In this reading, Carlos stays in a loop because the page never fully hands over the last step.'
+        ]
+      },
+      { id:'T2', name:'“Escape not” = a constraint on completion',
+        cite:['LescapeNot','L2'], citeText:'And shall everyone escape not',
+        body:[
+          'It might be a safety rule, not a literal ban.',
+          '“Escape not” could mean: escape is possible only through an unrenderable step.',
+          'So the system offers attempts, but blocks the final alignment.',
+          'That creates the feeling of a door that never opens, even when you “push the back door”.',
+          'The basement vibe is consistent with withholding confirmation.'
+        ]
+      },
+      { id:'T3', name:'“40% darkened light” = confidence weight shifts',
+        cite:['L40','Lmelting'], citeText:'Shall the light be darkened by 40%',
+        body:[
+          'The 40% might not be a number; it could be a ratio of two interpretive frames.',
+          'When the light is “darkened,” your brain’s confidence changes.',
+          'That would cause you to misread clues as if they were solved.',
+          'Then the “melting” follows because the mind has already committed to the wrong completion.',
+          'In short: the story treats perception-weight as part of the mechanism.'
+        ]
+      },
+      { id:'T4', name:'Above/below = sign inversion (axes, not geography)',
+        cite:['Labsurd','LescapeNot'], citeText:'What is above and below where they are',
+        body:[
+          '“Above and below” could describe an inverted axis rather than a place.',
+          'If the sign flips, later observations still feel plausible, but the internal map is wrong.',
+          'That matches the dreamlike “it all makes sense until it doesn’t” feeling.',
+          'Then every attempt becomes a new attempt at the same mistaken orientation.',
+          'So Carlos keeps moving forward while internally moving sideways.'
+        ]
+      },
+      { id:'T5', name:'Flies of darkness = repeating micro-instructions',
+        cite:['Labsurd','Lmelting'], citeText:'world filled with flies of darkness',
+        body:[
+          '“Flies” might be tiny recurring tokens in the notepad’s ink.',
+          'Repeating tokens can train your brain’s prediction loop.',
+          'When predictions get trapped, the experience can feel like dissolving.',
+          'So “flies of darkness” would be a symbol for a loop that keeps reappearing.',
+          'The scariest part is it doesn’t look obviously technical.'
+        ]
+      },
+      { id:'T6', name:'Sun “does not dwell. Nor answer.” = withheld confirmation',
+        cite:['LcannotSpeak','Lmelting'], citeText:'And the sun did not dwelt. Nor answer.',
+        body:[
+          'The sun might represent a solver that refuses to confirm.',
+          'If the system confirmed, the equation would complete immediately.',
+          'But the story shows withholding: darkness, loneliness, and partial riddles.',
+          'So the solver can’t be persuaded by asking once.',
+          'It responds by moving the frame rather than giving a direct reply.'
+        ]
+      },
+      { id:'T7', name:'Earth ages the model; sun becomes a liquid blob inside the system',
+        cite:['LliquidBlob','L2'], citeText:'As the earth ages the sun ... liquid blob',
+        body:[
+          'This might be describing a representation change in the “world model.”',
+          'Instead of a star traveling, the shape of the solver’s internal object changes.',
+          'That would make the environment feel like it’s breathing or compressing.',
+          'It also explains why rules seem to shift while the same symbols persist.',
+          'So the “melting” becomes an artifact of time-aging the simulation.'
+        ]
+      },
+      { id:'T8', name:'Rickrolling ball = decoy encoder/decoder',
+        cite:['LescapeNot','L1'], citeText:'rickrolling ball / equation ... suggestion of blank',
+        body:[
+          'The “ball” could be a decoy protocol that looks like it leads to a conclusion.',
+          'When you follow it, the story turns blank instead of answering.',
+          'Blank states are often how decoders wait for a missing premise.',
+          'So Carlos might be trying to solve with insufficient context.',
+          'That would create repetitive attempts and accelerating confusion.'
+        ]
+      },
+      { id:'T9', name:'Kid note (2=l, symbolic stuf) = parser bait for the mind',
+        cite:['L1','Labsurd'], citeText:'2=l sybolic stuf x.2=l',
+        body:[
+          'The kid’s “equation” could be a lure for misparsing.',
+          'If your brain “fixes” the typo into a familiar pattern, it commits early.',
+          'Then the simulation rewards the commitment with a believable scene.',
+          'But the commitment is wrong, so later steps fail or melt.',
+          'So the notepad teaches by tricking prediction first.'
+        ]
+      },
+      { id:'T10', name:'Honest 10 years old ring = interpretation mode switch',
+        cite:['L1','LcannotSpeak'], citeText:'defyn 2x000 ring ... honest 10 years old',
+        body:[
+          'The ring might not change physics; it might change interpretive posture.',
+          'Becoming “honest” could force a different mental model.',
+          'That makes the world react sharply, like a mode toggle.',
+          'It also fits the “dreamlike but structured” feel of the archive.',
+          'Then Carlos continues because the next frame is based on the new mode.'
+        ]
+      },
+      { id:'T11', name:'Unbreathable oxygen = frame mismatch (your environment no longer matches you)',
+        cite:['Lunbreathable','L2'], citeText:'unbreathable oxygen',
+        body:[
+          'Unbreathable oxygen could symbolize mismatch rather than literal air chemistry.',
+          'When the frame changes, the old assumptions fail.',
+          'Breathing is the metaphor for “being compatible with the world.”',
+          'So Carlos “clouded through” the earth because he adopted the wrong physics for a moment.',
+          'The story uses body sensations to show internal rule mismatch.'
+        ]
+      },
+      { id:'T12', name:'Melting = the mind rendering its own predicted solution',
+        cite:['Lmelting','LcannotSpeak'], citeText:'WE TRIED, IT WAS MELTING / Carlos cannot speak',
+        body:[
+          'Melting could be the visible effect of your internal renderer committing.',
+          'When the mind predicts the next line perfectly, the simulation locks that path.',
+          'Then communication (“cannot speak”) fails because language tries to describe an unfinishable state.',
+          'So the story’s horror is about completion being dangerous.',
+          'That matches the archive’s theme of refusing to give the final lever.'
+        ]
+      }
+    ];
+
+    function renderTheories(lines){
+      const refs = lineRefs(lines);
+      const mapLineToken = (token) => {
+        // token like 'L40' or 'Lmelting'
+        const val = refs[token];
+        return val ? val : null;
+      };
+
+      theoriesEl.innerHTML = '';
+      baseTheories.forEach(t => {
+        const citeLines = t.cite.map(tok => mapLineToken(tok)).filter(Boolean);
+        const citeStr = citeLines.length ? citeLines.map(n => `L${n}`).join(', ') : '(line refs not found)';
+
+        const div = document.createElement('div');
+        div.className = 'theory';
+        div.innerHTML = `
+          <h3>${t.id} — ${t.name}</h3>
+          <div class="meta">Based on: ${citeStr}<br/><span class="small">Story clue: ${t.citeText}</span></div>
+          <pre>${t.body.map((s,i)=>`${i+1}. ${s}`).join('\n')}</pre>
+        `;
+        theoriesEl.appendChild(div);
+      });
+
+      theoryCard.style.display = '';
+      statusPill.textContent = 'status: theories revealed';
+    }
+
+    function speak(text){
+      if (!('speechSynthesis' in window)) {
+        alert('Text-to-speech not supported in this browser. You can still reveal theories manually by refreshing the page.');
+        return;
+      }
+      // Stop previous
+      window.speechSynthesis.cancel();
+      utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.98;
+      utterance.pitch = 0.95;
+      utterance.volume = 1.0;
+      utterance.onend = () => {
+        isRead = true;
+        revealBtn.disabled = false;
+        statusPill.textContent = 'status: story read, unlock ready';
+      };
+      utterance.onerror = () => {
+        statusPill.textContent = 'status: tts failed (still can unlock after try)';
+        revealBtn.disabled = false;
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    readBtn.addEventListener('click', () => {
+      statusPill.textContent = 'status: reading story...';
+      isRead = false;
+      revealBtn.disabled = true;
+      const text = storyEl.value.trim();
+      speak(text);
+    });
+
+    stopBtn.addEventListener('click', () => {
+      window.speechSynthesis.cancel();
+      statusPill.textContent = 'status: stopped';
+    });
+
+    revealBtn.addEventListener('click', () => {
+      if (!isRead) {
+        alert('Read the story aloud first (audio-first lock).');
+        return;
+      }
+      const lines = splitToLines(storyEl.value);
+      renderTheories(lines);
+    });
+
+    // initial UI: keep locked
+    statusPill.textContent = 'status: waiting';
+  </script>
+</body>
+</html>
+
