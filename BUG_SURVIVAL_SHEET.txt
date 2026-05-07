@@ -1,0 +1,8 @@
+BUG SURVIVAL SHEET (COMMON ISSUES I KEEP HITTING)
+
+1. Docker not running → start Docker Desktop
+2. Port already in use → change 8080:80
+3. Blank page → check console (F12)
+4. Files not found → wrong folder opened
+5. AI generated wrong structure → fix paths manually
+

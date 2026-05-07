@@ -1,0 +1,7 @@
+ARCHIVE LOG #001
+
+Status: unstable
+Project: unknown physics experiment simulation
+Note: Carlos-type dataset detected in multiple fragments
+Warning: do not merge JSON layers without checksum validation
+

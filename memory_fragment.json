@@ -1,0 +1,25 @@
+{
+  "id": "fragment_003",
+  "subject": "Carlos",
+  "note": "coordnates match basemnt entry point (do not trust the equations)",
+  "checksum": "f3a9-19x-omgea",
+  "linked_file": "carlos_physics_mystery.html",
+  "physics_tags": [
+    "vectr-drift",
+    "interferometer-blink",
+    "levl-3-warning"
+  ],
+  "integrity": {
+    "status": "corupted but reaadable",
+    "checksum_method": "fictinoal-archive-sum"
+  },
+  "fields": {
+    "x": "13.37",
+    "y": "-0.001",
+    "z": "9.81",
+    "time_offset_seconds": 42,
+    "note2": "army laws are hiddeN in the basement notes"
+  }
+}
+
+
