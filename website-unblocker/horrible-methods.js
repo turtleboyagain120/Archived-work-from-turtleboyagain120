@@ -10,11 +10,19 @@ function setStatus(msg) {
 }
 
 function getUrl() {
-    let url = document.getElementById('urlInput').value.trim();
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
+    const raw = document.getElementById('urlInput').value.trim();
+    const normalized = (/^https?:\/\//i.test(raw)) ? raw : 'https://' + raw;
+
+    try {
+        const parsed = new URL(normalized);
+        if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+            return parsed.toString();
+        }
+    } catch (e) {
+        // Fall through to safe default.
     }
-    return url;
+
+    return 'about:blank';
 }
 
 function isChecked(id) {
@@ -244,12 +252,25 @@ function method7_formPost(url) {
     iframe.style.border = '5px ridge gold';
     
     const formWrapper = document.createElement('div');
-    formWrapper.innerHTML = `
-        <form action="${url}" method="POST" target="${iframe.name}" style="display:none">
-            <input type="hidden" name="hack" value="true">
-            <input type="hidden" name="timestamp" value="${Date.now()}">
-        </form>
-    `;
+    const form = document.createElement('form');
+    form.action = url;
+    form.method = 'POST';
+    form.target = iframe.name;
+    form.style.display = 'none';
+
+    const hackInput = document.createElement('input');
+    hackInput.type = 'hidden';
+    hackInput.name = 'hack';
+    hackInput.value = 'true';
+
+    const timestampInput = document.createElement('input');
+    timestampInput.type = 'hidden';
+    timestampInput.name = 'timestamp';
+    timestampInput.value = String(Date.now());
+
+    form.appendChild(hackInput);
+    form.appendChild(timestampInput);
+    formWrapper.appendChild(form);
     
     container.appendChild(iframe);
     container.appendChild(formWrapper);
