@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carlos Story + Theories (Read Aloud)</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#121a33;
+      --panel2:#0f1730;
+      --text:#e9eeff;
+      --muted:#aab3d6;
+      --accent:#7c5cff;
+      --accent2:#2ee59d;
+      --danger:#ff4d6d;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+      --mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(124,92,255,.35), transparent 60%),
+                  radial-gradient(1000px 500px at 90% 10%, rgba(46,229,157,.22), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+    }
+    header{
+      padding:22px 18px 10px;
+      max-width:1200px;
+      margin:0 auto;
+    }
+    .topbar{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:.2px;
+    }
+    .subtitle{color:var(--muted); font-size:13px; margin-top:6px; line-height:1.4}
+
+    main{max-width:1200px; margin:0 auto; padding:14px 18px 34px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .card-h{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      background: rgba(0,0,0,.12);
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .card .card-title{
+      font-weight:700;
+      font-size:14px;
+    }
+    .pill{font-size:12px; color:var(--muted); padding:6px 10px; border:1px solid var(--border); border-radius:999px; background: rgba(0,0,0,.12)}
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    button{
+      appearance:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:650;
+      cursor:pointer;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    button:hover{background: rgba(255,255,255,.10)}
+    button:active{transform: translateY(1px)}
+    button.primary{border-color: rgba(124,92,255,.55); background: rgba(124,92,255,.18)}
+    button.good{border-color: rgba(46,229,157,.50); background: rgba(46,229,157,.14)}
+    button.danger{border-color: rgba(255,77,109,.55); background: rgba(255,77,109,.15)}
+
+    .row{
+      padding:14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .progress-wrap{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .bar{
+      height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid var(--border);
+      overflow:hidden;
+      flex:1;
+    }
+    .bar > i{
+      display:block;
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(124,92,255,.95), rgba(46,229,157,.90));
+      border-radius:999px;
+      transition: width .12s linear;
+    }
+    .progress-text{font-size:12px; color:var(--muted); font-family:var(--mono)}
+
+    .story{
+      padding:12px 16px 16px;
+    }
+    .story p{margin:0 0 10px; line-height:1.6; color:rgba(233,238,255,.96)}
+    .chunk{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.10);
+      margin:10px 0;
+      position:relative;
+    }
+    .chunk.active{
+      border-color: rgba(124,92,255,.65);
+      background: rgba(124,92,255,.12);
+      box-shadow: 0 0 0 3px rgba(124,92,255,.10);
+    }
+    .chunk .meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .chunk .meta span{
+      font-size:12px; color:var(--muted); font-family:var(--mono)
+    }
+    .chunk .text{white-space:pre-wrap; font-size:14px}
+
+    .side{
+      padding:12px 16px 16px;
+    }
+
+    .theories{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .theory{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.09);
+      background: rgba(0,0,0,.10);
+      padding:12px;
+      cursor:pointer;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+    }
+    .theory:hover{background: rgba(255,255,255,.06)}
+    .theory.active{
+      border-color: rgba(46,229,157,.55);
+      background: rgba(46,229,157,.12);
+    }
+    .theory .t{font-weight:800; font-size:13px; margin-bottom:6px}
+    .theory .d{color:var(--muted); font-size:12.5px; line-height:1.45}
+
+    footer{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 18px 26px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .note{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    select{
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      outline:none;
+    }
+
+    .kbd{
+      font-family:var(--mono);
+      font-size:11px;
+      border:1px solid var(--border);
+      border-bottom-color: rgba(255,255,255,.22);
+      background: rgba(0,0,0,.12);
+      padding:2px 6px;
+      border-radius:8px;
+      color:var(--muted);
+    }
+
+    .hidden{display:none}
+
+    /* Mini arcade */
+    .miniArcade{
+      padding:12px 16px 16px;
+    }
+    .arcadeTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .arcadeSub{
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.4;
+      margin-top:2px;
+    }
+    .arcadeGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 1100px){
+      .grid{grid-template-columns: 1.35fr .95fr;}
+      .arcadeGrid{grid-template-columns: 1fr 1fr; }
+    }
+    .gameCard{
+      border:1px solid rgba(255,255,255,.09);
+      background: rgba(0,0,0,.10);
+      border-radius:14px;
+      padding:12px;
+    }
+    .gameCard .gTitle{
+      font-weight:850;
+      font-size:13px;
+      margin-bottom:6px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .badge{
+      font-family:var(--mono);
+      font-size:11px;
+      color:var(--muted);
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.10);
+      padding:2px 8px;
+      border-radius:999px;
+    }
+    .gameCard .gDesc{
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.4;
+      margin-bottom:10px;
+    }
+    .input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      outline:none;
+      font-family:var(--mono);
+    }
+    .smallRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .smallRow > *{flex: 0 0 auto}
+    .gameStatus{
+      font-size:12px;
+      color:var(--muted);
+      font-family:var(--mono);
+      margin-top:8px;
+    }
+    .feedback{
+      font-size:12px;
+      margin-top:8px;
+      font-family:var(--mono);
+    }
+    .feedback.good{color: rgba(46,229,157,.95)}
+    .feedback.bad{color: rgba(255,77,109,.95)}
+    .questOptions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .opt{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 10px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      font-size:12.5px;
+      font-weight:650;
+    }
+    .opt:hover{background: rgba(255,255,255,.10)}
+    .opt:active{transform: translateY(1px)}
+    .opt.selected{
+      border-color: rgba(124,92,255,.65);
+      background: rgba(124,92,255,.14);
+    }
+
+    .glitch{
+      position:relative;
+      display:inline-block;
+    }
+    .glitch:before, .glitch:after{
+      content: attr(data-text);
+      position:absolute;
+      left:0; top:0;
+      opacity:.55;
+      pointer-events:none;
+      clip-path: inset(0 0 0 0);
+    }
+    .glitch.anim:before{
+      transform: translate(1px,0);
+      color: rgba(124,92,255,.95);
+      animation: glitch1 .6s infinite linear alternate;
+    }
+    .glitch.anim:after{
+      transform: translate(-1px,0);
+      color: rgba(46,229,157,.95);
+      animation: glitch2 .7s infinite linear alternate;
+    }
+    @keyframes glitch1{
+      0%{clip-path: inset(0 0 70% 0)}
+      100%{clip-path: inset(40% 0 10% 0)}
+    }
+    @keyframes glitch2{
+      0%{clip-path: inset(60% 0 0 0)}
+      100%{clip-path: inset(10% 0 50% 0)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div>
+        <h1>Carlos Story Reader + Biggest Theories</h1>
+        <div class="subtitle">Reads the story aloud (Web Speech API) and highlights “biggest theories” while/after you listen. Works best in Chrome/Edge.</div>
+      </div>
+      <div class="pill">Offline-friendly • No build tools</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section class="card" aria-label="Story reader">
+        <div class="card-h">
+          <div class="card-title">Story</div>
+          <div class="controls">
+            <button id="btnPlay" class="primary" type="button">▶ Read</button>
+            <button id="btnPause" class="good" type="button">⏸ Pause</button>
+            <button id="btnStop" class="danger" type="button">⏹ Stop</button>
+            <button id="btnRestart" type="button">↻ Restart</button>
+            <span class="pill" id="status">Ready</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="progress-wrap">
+            <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+            <div class="progress-text" id="progressText">0/0</div>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+            <div class="note">
+              Keyboard: <span class="kbd">Space</span> play/pause • <span class="kbd">S</span> stop • <span class="kbd">R</span> restart
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <label class="note" for="voiceSelect">Voice:</label>
+              <select id="voiceSelect"></select>
+              <label class="note" for="rate">Rate:</label>
+              <select id="rate" style="width:140px"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="story" id="story"></div>
+      </section>
+
+      <aside class="card" aria-label="Theories">
+        <div class="card-h">
+          <div class="card-title">Biggest Theories (≈30)</div>
+          <div class="pill" id="theoryPill">Tap to focus</div>
+        </div>
+        <div class="side">
+          <div class="theories" id="theories"></div>
+          <div class="note" style="margin-top:10px">As playback progresses, the most relevant theory group is highlighted.</div>
+        </div>
+      </aside>
+    </div>
+
+    <aside class="card miniArcade" aria-label="Mini Arcade">
+      <div class="card-h">
+        <div class="card-title">
+          Mini Arcade
+          <span class="badge" id="arcadeScoreBadge">Score: 0</span>
+        </div>
+        <div class="controls">
+          <button id="btnArcadeReset" type="button">↺ Reset</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="arcadeTitle">
+          <div>
+            <div style="font-weight:900">Stuffed Mode</div>
+            <div class="arcadeSub">Syncs with your current story chunk. Keep reading to “unlock” bonuses.</div>
+          </div>
+          <div class="pill" id="arcadeChunkPill">Chunk 1</div>
+        </div>
+
+        <div class="arcadeGrid">
+          <!-- Chunk Quest -->
+          <div class="gameCard">
+            <div class="gTitle">
+              <span>1) Chunk Quest</span>
+              <span class="badge" id="questTargetBadge">Target: —</span>
+            </div>
+            <div class="gDesc">Pick the theory cards that match the highlighted chunk.</div>
+
+            <div class="questOptions" id="questOptions"></div>
+
+            <div class="smallRow" style="margin-top:10px">
+              <button id="btnQuestCheck" type="button">Check</button>
+              <button id="btnQuestSkip" type="button">Skip</button>
+            </div>
+
+            <div class="gameStatus" id="questStatus">Awaiting chunk…</div>
+            <div class="feedback" id="questFeedback"></div>
+          </div>
+
+          <!-- Typing Spell -->
+          <div class="gameCard">
+            <div class="gTitle">
+              <span>2) Typing Spell</span>
+              <span class="badge" id="spellBadge">Unlocked: 0/0</span>
+            </div>
+            <div class="gDesc">Type the short “spell” from the current chunk.</div>
+
+            <div class="smallRow">
+              <div class="pill glitch" id="spellText" data-text="—">—</div>
+            </div>
+
+            <div class="smallRow" style="margin-top:10px">
+              <input id="spellInput" class="input" type="text" placeholder="Type here…" autocomplete="off" />
+              <button id="btnSpellCast" type="button">Cast</button>
+            </div>
+
+            <div class="gameStatus" id="spellStatus">Ready.</div>
+            <div class="feedback" id="spellFeedback"></div>
+          </div>
+
+          <!-- Audio Controls Quiz -->
+          <div class="gameCard">
+            <div class="gTitle">
+              <span>3) Audio Controls Quiz</span>
+              <span class="badge" id="quizBadge">Done: 0/0</span>
+            </div>
+            <div class="gDesc">Perform the exact audio action. (Works with your buttons.)</div>
+
+            <div class="smallRow">
+              <div class="pill" id="quizPrompt">Prompt: —</div>
+            </div>
+
+            <div class="smallRow" style="margin-top:10px">
+              <button id="btnQuizDone" type="button">I Did It</button>
+              <button id="btnQuizNew" type="button">New Prompt</button>
+            </div>
+
+            <div class="gameStatus" id="quizStatus">Awaiting action…</div>
+            <div class="feedback" id="quizFeedback"></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    Tip: if the voice doesn’t start, click <b>Read</b> again after the browser grants audio permissions.
+  </footer>
+
+  <script>
+    const STORY_RAW = `1. Carlos:
+There was a man called Carlos, A Spain scientist who is exploring the laws of physics (very strong lifts 8,000 pounds regulary every day) One day at his house in 265 Hayden ln north Carolina, He found an old smelling notepad in the basement. It looked like some math questions were inside of it, A kid screaming "2=l sybolic stuf x.2=l"
+ but the more he looked inside the notepad, the more clear it came that the laws of physics were held by the army of nations to come. So Carlos took a boring 5 hour drive to the army where he asked his question about the laws of physics, but the army refused to answer. So he took a
+ 1 day drive back to home (traffic) and saw his house was destroyed by a nuclear facility trying to take that area. It smelled more like hotdogs then smoke to be honest. So he grabbed is defyn 2x000 ring that turns anyone into a honest 10 years old. And he uses it against the force of the facility. Then the facility was so honest, It attacked Carlos. The Grumpy facility forgot how to walk so Carlos ran away as time ate the facility. All the workers were confused even Carlos. And then Carlos tried it on the workers instead of the facility . And they said the answer was hidden inside of the earth. So Carlos spanked himself 50 times then grabbed a chainsaw. It was fast and uncontrollable, but at least he made it to the center of the earth. To see a big red giant ball Rickr-
+
+
+2. NOT OF THE DEAD BUT FROM THE DEAD THAT ARISES FROM THE DEAD OF THE AFTERLIFE:
+So then Carlos tried the back door of the red, giant, rickrolling ball. "And shall everyone escape not" Carlos cried in sorrow. Just figuring out the equation to the notepad was just a
+ suggestion of a world filled of blank. "WE TRIED, IT WAS MELTING" Said in sorrow the giant, big, red sun. then more into the fact this felt dark and lonely more of the time even with the son, not including the son of Jesus which is another story in the bible. But "Shall the light be darkened by 40%" The sun said. But ever wondered how they escaped? Rather the fact you should be asking is, "What is above and below where they are. And in no place shall they ever morn to fire in the darkest places of depart and rejoice" "But your teacher, sun" Said Carlos "Which may be you. Have descended into the world filled with flies of darkness" And the sun did not dwelt. Nor answer. As the earth ages the sun was always in the earth in the form of a liquid blob. Nor suggest why we are melting. More dreamlike as it felt since the sudden slam on the ground last hour. And thou this may teach our sun, the teacher of the earth since release day. "KID" yelled the sun, Yielding a ton of energy. But Carlos cannot speak. Then he clouded through the earth through the unbreathable oxygen. Then the sun was lost. "And foal this be another failed simulation" Said the earthians, earth people who made more then and other then 900 comics. More then the earth could pressure himself. "This is getting about-" said earthain one. Blobby as they felt like a dream. Surfactant in darkness. Nah as they walked in pressure as tough as metal fused into your skin with no bones to stabilize it.
+
+
+3. NO DEAD BLOB
+So the sun had risked his life on that yield of energy with the earthians under a cover to protect themselves from the pain. Now they were already in hell if you wanted to know. And the honesty was another path to evil (knowing you know how to tell the truth to get to evil). Not known after, Carlos slowly turned into melting sources of lava. "And HELP ME HELP" Carlos whined (such a baby). Then the lock behind them, the door slowly creaked opened. Already the sun was lava. So Carlos took a leap to the rock, then the other rock, then the other rock, then the last and final rock, and he jumped to the exit. The honest ten years olds looked grumpy right above the exit. The facility ended they had guns AND WORLD WA- no. I meant the army went down also. So when Carlos went to open the door up the hatch up into the normal earth, they demanded the notebook and said "Ther- it's too powerful" And then… "NEVER" said Carlos. So he GTA the army's warthog and drive to his house (12 hour drive) then kicked his house open so hard, a black hole ate it. He scurried through his 80,000 pound weighs, through the basement, through the boxes of games, through his relative photo's UNTIL he reached the notepad and took it and scribbled down the equation we first saw in the 1st chapter. "2=l sybolic stuf x.2=l" we wrote as more darkness filled the room. Then he threw the notepad down so hard, it turned into 2 halves instantly without cutting it.`;
+
+    // Split into chunks (simple heuristic: blank lines)
+    const chunks = STORY_RAW
+      .split(/\n\s*\n/g)
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    // ~30 theories; each theory maps to a chunk index to highlight progressively.
+    const theories = [
+      {title:"Equation as a key, not a solution", desc:"The notepad’s line ‘2=l … 2=l’ behaves like a lock/pattern: it doesn’t explain physics—it unlocks access to a deeper layer (army of nations / facility / center-earth).", chunk:0},
+      {title:"Physics is being ‘held’ like property", desc:"‘Laws of physics were held by the army’ implies rules are controlled/collected by an authority—suggesting reality can be governed or negotiated.", chunk:0},
+      {title:"Strength as a plot-coded ‘power meter’", desc:"Carlos lifting 8,000 pounds daily reads like a training montage for overcoming thresholds: some doors only open after sustained force/discipline.", chunk:0},
+      {title:"Basement = subconscious math", desc:"The basement notepad suggests the equation came from hidden mental models—memory and pattern recognition rather than external discovery.", chunk:0},
+      {title:"Refusal triggers escalation", desc:"The army refused to answer; immediately reality punishes him with the facility destroying his house. The system responds to questioning with violence.", chunk:1},
+      {title:"The facility smells like hotdogs = false comfort", desc:"It ‘smells more like hotdogs then smoke’ hints at decoy normalcy: danger is disguised as something familiar and edible.", chunk:1},
+      {title:"‘Honest 10-year-olds’ as involuntary truth", desc:"The ring turns people into ‘honest 10 years old’—suggesting truth arrives as vulnerability, childlike directness, and lack of strategy.", chunk:1},
+      {title:"Honesty as a weapon", desc:"‘Honesty was another path to evil’ implies telling the truth can still harm if used by an attacker or system.", chunk:2},
+      {title:"Time ‘ate the facility’ = reality rewrites", desc:"Time devours the facility when it becomes ‘grumpy’ and forgets how to walk. That reads like the universe deleting malfunctioning actors.", chunk:2},
+      {title:"Workers know the answer is underground", desc:"They say the answer is hidden inside the earth—pointing to ‘substrate truth’: the model of reality is rooted in geography.", chunk:2},
+      {title:"Chainsaw = brute-force descent", desc:"A chainsaw to reach the center indicates the protagonist uses destructive tools because gentle inquiry won’t reach the deep layer.", chunk:2},
+      {title:"Rickrolling ball = parody as portal", desc:"The ‘big red giant ball Rickr-’ suggests the medium itself (meme/parody) is the doorway.", chunk:2},
+      {title:"‘Escape not’ = conditional freedom", desc:"‘Shall everyone escape not’ frames escape as conditional: some truths free you, others trap you with consequences.", chunk:3},
+      {title:"The world of blank = erased identities", desc:"The equation is a suggestion of a world filled of blank—like identities get overwritten when the system runs.", chunk:3},
+      {title:"Big red sun as a caretaker", desc:"The sun says ‘darkened by 40%’ and ‘yielding energy’—it’s both a teacher and a sacrifice.", chunk:3},
+      {title:"Light controlled in percentages", desc:"A literal ‘40%’ implies regulation/partitioning. Darkness isn’t natural; it’s allocated.", chunk:4},
+      {title:"Above/below geometry is the question", desc:"‘What is above and below where they are’ suggests the truth depends on orientation/axes (coordinate systems), not just location.", chunk:4},
+      {title:"Flies of darkness = parasite narrative", desc:"Darkness is populated; the afterlife becomes ecological (flies), meaning evil spreads through interactions.", chunk:4},
+      {title:"Liquid blob sun = phase-change cosmos", desc:"The sun being ‘always in the earth in the form of a liquid blob’ reads like a physics model: cycles of phase and confinement.", chunk:5},
+      {title:"Unbreathable oxygen = wrong world-state", desc:"Carlos ‘clouded through the earth’ through unbreathable oxygen, implying he moved between states with incompatible rules.", chunk:5},
+      {title:"Failed simulation = reboot loops", desc:"‘Another failed simulation’ implies the system repeatedly tests and resets. The story is one run in many.", chunk:5},
+      {title:"Earthians made >900 comics = authorial artifacts", desc:"Earth people who made many comics suggests the world is generating/consuming narratives—meta-creativity as infrastructure.", chunk:6},
+      {title:"Pressure fusing skin = contact without bones", desc:"Metal fused into your skin with no bones = form without structure. Reality demands different embodiment rules.", chunk:6},
+      {title:"Hell = already there when safeguards fail", desc:"They were ‘already in hell’ when the sun risked his life to protect earthians. Safety is temporary; the place is persistent.", chunk:7},
+      {title:"Turning into lava = outcome of knowledge", desc:"Carlos slowly becomes melting sources of lava: understanding the system heats/erodes the self.", chunk:7},
+      {title:"Lock behind them = system gate", desc:"The lock/door creaking open indicates progression is controlled by gates that respond to story states.", chunk:7},
+      {title:"Exit reveals guns and armies = enforcement layer", desc:"Guns and the army trying to demand the notebook shows the controlling authority tracks the key.", chunk:8},
+      {title:"Notebook too powerful = weaponized math", desc:"‘It’s too powerful’ frames mathematics as an engine—capable of reorganizing reality when treated like a control system.", chunk:8},
+      {title:"Splitting the notepad = destructive duplication", desc:"Throwing the notepad down makes it turn into two halves instantly: knowledge fractures into competing interpretations once unleashed.", chunk:8}
+    ];
+
+    // Render story chunks
+    const storyEl = document.getElementById('story');
+    const theoriesEl = document.getElementById('theories');
+
+    // Create story HTML
+    const chunkEls = chunks.map((t, idx) => {
+      return `
+        <div class="chunk" data-chunk-index="${idx}">
+          <div class="meta">
+            <span>Chunk ${idx + 1}/${chunks.length}</span>
+            <span class="pill" style="opacity:.85">${idx === 0 ? 'Start' : ''}</span>
+          </div>
+          <div class="text">${escapeHtml(t)}</div>
+        </div>
+      `;
+    }).join('');
+
+    storyEl.innerHTML = chunkEls;
+
+    // Create theories HTML
+    const theoryEls = theories.map((th, idx) => {
+      return `
+        <div class="theory" role="button" tabindex="0" data-chunk-index="${th.chunk}" data-theory-index="${idx}">
+          <div class="t">${escapeHtml(th.title)}</div>
+          <div class="d">${escapeHtml(th.desc)}</div>
+        </div>
+      `;
+    }).join('');
+
+    theoriesEl.innerHTML = theoryEls;
+
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','<')
+        .replaceAll('>','>')
+        .replaceAll('"','"')
+        .replaceAll("'",'&#039;');
+    }
+
+    // Web Speech API
+    const btnPlay = document.getElementById('btnPlay');
+    const btnPause = document.getElementById('btnPause');
+    const btnStop = document.getElementById('btnStop');
+    const btnRestart = document.getElementById('btnRestart');
+    const statusEl = document.getElementById('status');
+    const barEl = document.getElementById('bar');
+    const progressTextEl = document.getElementById('progressText');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const rateSelect = document.getElementById('rate');
+
+    const speech = window.speechSynthesis;
+    let utterance = null;
+    let currentChunkIndex = 0;
+    let isPaused = false;
+
+    const rates = [0.75, 0.85, 0.95, 1.0, 1.1, 1.2];
+
+    // ===== Mini Arcade State =====
+    let arcadeScore = 0;
+
+    // Chunk Quest
+    let questDone = false;
+    let questTargetChunk = 0;
+
+    // Typing Spell
+    let spellUnlockedCount = 0;
+    let spellTarget = "";
+    let spellCastCount = 0;
+
+    // Audio Controls Quiz
+    let quizDoneCount = 0;
+    let quizPrompt = "";
+    let quizAction = null; // {type:'pause'|'setRate'|'restart' , rate?:number}
+
+    const arcadeChunkPill = document.getElementById('arcadeChunkPill');
+    const arcadeScoreBadge = document.getElementById('arcadeScoreBadge');
+
+    const questOptionsEl = document.getElementById('questOptions');
+    const questTargetBadge = document.getElementById('questTargetBadge');
+    const questStatusEl = document.getElementById('questStatus');
+    const questFeedbackEl = document.getElementById('questFeedback');
+
+    const spellBadge = document.getElementById('spellBadge');
+    const spellTextEl = document.getElementById('spellText');
+    const spellInput = document.getElementById('spellInput');
+    const btnSpellCast = document.getElementById('btnSpellCast');
+    const spellStatusEl = document.getElementById('spellStatus');
+    const spellFeedbackEl = document.getElementById('spellFeedback');
+
+    const quizBadge = document.getElementById('quizBadge');
+    const quizPromptEl = document.getElementById('quizPrompt');
+    const btnQuizDone = document.getElementById('btnQuizDone');
+    const btnQuizNew = document.getElementById('btnQuizNew');
+    const quizStatusEl = document.getElementById('quizStatus');
+    const quizFeedbackEl = document.getElementById('quizFeedback');
+
+    const btnArcadeReset = document.getElementById('btnArcadeReset');
+
+    function setArcadeScore(delta){
+      arcadeScore = Math.max(0, arcadeScore + delta);
+      arcadeScoreBadge.textContent = `Score: ${arcadeScore}`;
+    }
+
+    function normalizeSpell(s){
+      return String(s || "")
+        .trim()
+        .toLowerCase()
+        .replaceAll(/\s+/g, "");
+    }
+
+    function deriveSpellFromChunk(chunkText){
+      // Create a short “spell”: first 14 chars of chunk, keep only letters/digits/spaces, then strip spaces
+      const raw = String(chunkText || "");
+      const first = raw.slice(0, 18);
+      const cleaned = first.replace(/[^a-zA-Z0-9 ]/g, "").trim();
+      if (!cleaned) return "carlos";
+      return cleaned.replace(/\s+/g, "").slice(0, 12);
+    }
+
+    function updateArcadeOnChunkChange(idx){
+      questTargetChunk = idx;
+      questDone = false;
+
+      // Update arcade chunk pill
+      const human = idx + 1;
+      if (arcadeChunkPill) arcadeChunkPill.textContent = `Chunk ${human}`;
+
+      // ===== Chunk Quest setup =====
+      questTargetBadge.textContent = `Target: Chunk ${human}`;
+
+      const correctTheories = theories.filter(t => t.chunk === idx);
+      const correctTitles = new Set(correctTheories.map(t => t.title));
+
+      // Build options: correct + some decoys from other chunks
+      const allTheories = theories.map((t, i) => ({...t, id: i}));
+      const decoysPool = allTheories.filter(t => !correctTitles.has(t.title));
+
+      // Choose up to 6 options total, include all correct up to 4.
+      const chosen = [];
+      for (const t of correctTheories) {
+        const match = allTheories.find(x => x.title === t.title);
+        if (match) chosen.push(match);
+      }
+
+      // Add decoys
+      while (chosen.length < Math.min(6, Math.max(3, correctTheories.length + 2)) && decoysPool.length > 0) {
+        const pick = decoysPool.splice(Math.floor(Math.random() * decoysPool.length), 1)[0];
+        chosen.push(pick);
+      }
+
+      // Shuffle
+      chosen.sort(() => Math.random() - 0.5);
+
+      questOptionsEl.innerHTML = "";
+      questFeedbackEl.textContent = "";
+      questStatusEl.textContent = 'Pick the matching theories, then Check.';
+
+      chosen.forEach(opt => {
+        const el = document.createElement('div');
+        el.className = 'opt';
+        el.role = 'button';
+        el.tabIndex = 0;
+        el.dataset.title = opt.title;
+        el.dataset.chunk = String(opt.chunk);
+        el.textContent = opt.title;
+
+        el.addEventListener('click', () => {
+          el.classList.toggle('selected');
+        });
+        questOptionsEl.appendChild(el);
+      });
+
+      // ===== Typing Spell setup =====
+      spellTarget = deriveSpellFromChunk(chunks[idx] || "");
+      spellCastCount = 0;
+      spellTextEl.textContent = spellTarget || "—";
+      spellTextEl.dataset.text = spellTarget || "—";
+      spellInput.value = "";
+
+      spellUnlockedCount = spellUnlockedCount; // persists across chunks
+      spellBadge.textContent = `Unlocked: ${spellUnlockedCount}`;
+      spellStatusEl.textContent = 'Type the spell from this chunk, then Cast.';
+      spellFeedbackEl.textContent = '';
+
+      // ===== Audio Quiz setup (new prompt) =====
+      quizFeedbackEl.textContent = '';
+      quizStatusEl.textContent = 'New action prompt ready.';
+      btnQuizDone.disabled = false;
+
+      // We'll generate quiz based on current playback state possibilities.
+      btnQuizNew.click(); // sets prompt & action
+      // ensure prompt visible even after click
+    }
+
+    function evaluateQuest(){
+      if (questDone) return;
+
+      const selectedEls = [...questOptionsEl.querySelectorAll('.opt.selected')];
+      const selectedTitles = new Set(selectedEls.map(el => el.dataset.title));
+
+      const correctTheories = theories.filter(t => t.chunk === questTargetChunk);
+      const correctTitles = new Set(correctTheories.map(t => t.title));
+
+      // Correct if every selected is correct and every correct is selected
+      let allCorrect = true;
+      for (const t of selectedTitles) {
+        if (!correctTitles.has(t)) allCorrect = false;
+      }
+      for (const t of correctTitles) {
+        if (!selectedTitles.has(t)) allCorrect = false;
+      }
+
+      if (allCorrect){
+        questDone = true;
+        setArcadeScore(10);
+        questStatusEl.textContent = 'Quest complete. +10!';
+        questFeedbackEl.textContent = 'The universe approves your theory matching.';
+        questFeedbackEl.className = 'feedback good';
+      } else {
+        questStatusEl.textContent = 'Not quite.';
+        questFeedbackEl.textContent = 'Try selecting only theories that belong to this chunk.';
+        questFeedbackEl.className = 'feedback bad';
+      }
+    }
+
+    function unlockSpell(){
+      if (!spellTarget) return;
+      const typed = normalizeSpell(spellInput.value);
+      const target = normalizeSpell(spellTarget);
+
+      if (typed === target){
+        spellCastCount++;
+        spellUnlockedCount++;
+        spellBadge.textContent = `Unlocked: ${spellUnlockedCount}/${spellUnlockedCount}`;
+        setArcadeScore(6);
+
+        spellStatusEl.textContent = 'Spell cast! Bonus unlocked.';
+        spellFeedbackEl.textContent = 'You aligned with the chunk’s hidden signal.';
+        spellFeedbackEl.className = 'feedback good';
+        spellTextEl.classList.add('anim');
+        return true;
+      }
+
+      spellStatusEl.textContent = 'Spell fizzled.';
+      spellFeedbackEl.textContent = 'Type the exact spell (case-insensitive, spaces removed).';
+      spellFeedbackEl.className = 'feedback bad';
+      return false;
+    }
+
+    function setQuizPrompt(promptText, actionObj){
+      quizPrompt = promptText;
+      quizAction = actionObj;
+
+      quizPromptEl.textContent = `Prompt: ${promptText}`;
+      quizStatusEl.textContent = 'Do the action, then press “I Did It”.';
+      quizFeedbackEl.textContent = '';
+      btnQuizDone.disabled = false;
+    }
+
+    function pickQuizPrompt(){
+      // Randomly choose among supported actions that we can detect.
+      const r = Math.random();
+      if (r < 0.33){
+        return {
+          prompt: 'Pause the story.',
+          action: {type:'pause'}
+        };
+      }
+      if (r < 0.66){
+        const rate = rates[Math.floor(Math.random() * rates.length)];
+        return {
+          prompt: `Set speech rate to ${rate}x and keep reading.`,
+          action: {type:'setRate', rate: rate}
+        };
+      }
+      return {
+        prompt: 'Restart the story from Chunk 1.',
+        action: {type:'restart'}
+      };
+    }
+
+    function computeQuizDone(){
+      if (!quizAction) return false;
+
+      if (quizAction.type === 'pause'){
+        return isPaused === true;
+      }
+      if (quizAction.type === 'setRate'){
+        const currentRate = Number(rateSelect.value) || 1.0;
+        const target = Number(quizAction.rate) || 1.0;
+        return Math.abs(currentRate - target) < 0.001;
+      }
+      if (quizAction.type === 'restart'){
+        return currentChunkIndex === 0 && barEl.style.width === '0%';
+      }
+      return false;
+    }
+
+    function finishQuiz(){
+      if (!quizAction) return;
+
+      if (computeQuizDone()){
+        quizDoneCount++;
+        quizBadge.textContent = `Done: ${quizDoneCount}/${quizDoneCount}`;
+        setArcadeScore(12);
+
+        quizStatusEl.textContent = 'Quiz completed. +12!';
+        quizFeedbackEl.textContent = 'Signal received.';
+        quizFeedbackEl.className = 'feedback good';
+
+        // auto new prompt
+        pickAndSetQuizPrompt();
+      } else {
+        quizStatusEl.textContent = 'Action not detected yet.';
+        quizFeedbackEl.textContent = 'Make sure you performed the exact audio control action.';
+        quizFeedbackEl.className = 'feedback bad';
+      }
+    }
+
+    function pickAndSetQuizPrompt(){
+      const pick = pickQuizPrompt();
+      setQuizPrompt(pick.prompt, pick.action);
+    }
+
+    // ===== Mini Arcade event wiring =====
+    if (btnArcadeReset){
+      btnArcadeReset.addEventListener('click', () => {
+        arcadeScore = 0;
+        questDone = false;
+        spellUnlockedCount = 0;
+        quizDoneCount = 0;
+        quizBadge.textContent = 'Done: 0/0';
+        spellBadge.textContent = 'Unlocked: 0/0';
+        arcadeScoreBadge.textContent = 'Score: 0';
+        btnRestart.click();
+        updateArcadeOnChunkChange(currentChunkIndex);
+        spellFeedbackEl.textContent = '';
+        questFeedbackEl.textContent = '';
+        quizFeedbackEl.textContent = '';
+        questStatusEl.textContent = 'Awaiting chunk…';
+        spellStatusEl.textContent = 'Ready.';
+        quizStatusEl.textContent = 'Awaiting action…';
+      });
+    }
+
+    if (btnArcadeReset){
+      // no-op, placeholder
+    }
+
+    const questCheckBtn = document.getElementById('btnQuestCheck');
+    const questSkipBtn = document.getElementById('btnQuestSkip');
+    if (questCheckBtn) questCheckBtn.addEventListener('click', evaluateQuest);
+    if (questSkipBtn){
+      questSkipBtn.addEventListener('click', () => {
+        questDone = true;
+        questStatusEl.textContent = 'Skipped. Try on next chunk.';
+        questFeedbackEl.textContent = 'Skipping keeps you moving.';
+        questFeedbackEl.className = 'feedback';
+        setArcadeScore(0);
+      });
+    }
+
+    if (btnSpellCast){
+      btnSpellCast.addEventListener('click', () => unlockSpell());
+    }
+    if (spellInput){
+      spellInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter'){
+          e.preventDefault();
+          unlockSpell();
+        }
+      });
+    }
+
+    if (btnQuizNew) btnQuizNew.addEventListener('click', () => pickAndSetQuizPrompt());
+    if (btnQuizDone) btnQuizDone.addEventListener('click', finishQuiz);
+
+    rateSelect.innerHTML = rates.map(r => `<option value="${r}">${r}x</option>`).join('');
+    rateSelect.value = '1.0';
+
+    function loadVoices(){
+      const voices = speech.getVoices ? speech.getVoices() : [];
+      voiceSelect.innerHTML = voices.map((v, i) => `<option value="${i}">${escapeHtml(v.name)} (${escapeHtml(v.lang)})</option>`).join('');
+    }
+
+    // Populate voices (async)
+    if (speech.onvoiceschanged !== undefined) {
+      speech.onvoiceschanged = () => loadVoices();
+    }
+    loadVoices();
+
+    function setActiveChunk(idx){
+      currentChunkIndex = Math.max(0, Math.min(idx, chunks.length - 1));
+
+      document.querySelectorAll('.chunk').forEach(el => {
+        el.classList.toggle('active', Number(el.dataset.chunkIndex) === currentChunkIndex);
+      });
+
+      // highlight the most relevant theory group for this chunk
+      const theoryGroup = theories.filter(t => t.chunk === currentChunkIndex);
+      const targetIdxSet = new Set(theoryGroup.map((_, i) => i));
+
+      document.querySelectorAll('.theory').forEach(el => {
+        const match = Number(el.dataset.chunkIndex) === currentChunkIndex;
+        el.classList.toggle('active', match);
+      });
+
+      // Sync mini games to this chunk
+      try {
+        if (typeof updateArcadeOnChunkChange === 'function') {
+          updateArcadeOnChunkChange(currentChunkIndex);
+        }
+      } catch {}
+    }
+
+    function updateProgress(){
+      const pct = chunks.length <= 1 ? 0 : (currentChunkIndex / (chunks.length - 1)) * 100;
+      barEl.style.width = `${pct}%`;
+      progressTextEl.textContent = `${currentChunkIndex + 1}/${chunks.length}`;
+    }
+
+    function getSelectedVoice(){
+      const voices = speech.getVoices ? speech.getVoices() : [];
+      const idx = Number(voiceSelect.value);
+      if (!Number.isFinite(idx) || idx < 0 || idx >= voices.length) return null;
+      return voices[idx] || null;
+    }
+
+    function speakChunk(idx){
+      if (idx >= chunks.length) {
+        statusEl.textContent = 'Finished';
+        return;
+      }
+
+      setActiveChunk(idx);
+      updateProgress();
+      statusEl.textContent = `Reading chunk ${idx + 1}/${chunks.length}`;
+
+      utterance = new SpeechSynthesisUtterance(chunks[idx]);
+      utterance.rate = Number(rateSelect.value) || 1.0;
+
+      const v = getSelectedVoice();
+      if (v) utterance.voice = v;
+
+      utterance.onend = () => {
+        if (isPaused) return;
+        speakChunk(idx + 1);
+      };
+
+      utterance.onerror = () => {
+        statusEl.textContent = 'Speech error. Try Restart.';
+      };
+
+      speech.speak(utterance);
+    }
+
+    function stopAll(){
+      try { speech.cancel(); } catch {}
+      utterance = null;
+      isPaused = false;
+      statusEl.textContent = 'Stopped';
+    }
+
+    btnPlay.addEventListener('click', () => {
+      // If starting fresh, begin at currentChunkIndex
+      isPaused = false;
+      stopAll();
+      speakChunk(currentChunkIndex);
+    });
+
+    btnPause.addEventListener('click', () => {
+      isPaused = true;
+      try {
+        speech.pause();
+        statusEl.textContent = 'Paused';
+      } catch {
+        statusEl.textContent = 'Pause not supported';
+      }
+    });
+
+    btnStop.addEventListener('click', () => {
+      stopAll();
+    });
+
+    btnRestart.addEventListener('click', () => {
+      stopAll();
+      currentChunkIndex = 0;
+      barEl.style.width = '0%';
+      progressTextEl.textContent = `1/${chunks.length}`;
+      setActiveChunk(0);
+      statusEl.textContent = 'Restarted';
+    });
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        btnPlay.click();
+      }
+      if (e.key.toLowerCase() === 's') btnStop.click();
+      if (e.key.toLowerCase() === 'r') btnRestart.click();
+    });
+
+    // Click theory cards (jump/ focus)
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('.theory');
+      if (!t) return;
+      const chunkIdx = Number(t.dataset.chunkIndex);
+      if (Number.isFinite(chunkIdx)) {
+        currentChunkIndex = chunkIdx;
+        setActiveChunk(chunkIdx);
+        updateProgress();
+        stopAll();
+        speakChunk(chunkIdx);
+      }
+    });
+
+    setActiveChunk(0);
+    updateProgress();
+  </script>
+</body>
+</html>
+

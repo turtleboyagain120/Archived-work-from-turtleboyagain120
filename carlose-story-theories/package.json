@@ -1,0 +1,12 @@
+{
+  "name": "carlos-story-theories",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Single-file offline HTML story reader with Web Speech API + Mini Arcade.",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node -e \"const http=require('http');const fs=require('fs');const path=require('path');const port=process.env.PORT||3000;const root=process.cwd();const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.gif':'image/gif','.json':'application/json','.txt':'text/plain'};http.createServer((req,res)=>{let url=(req.url||'/').split('?')[0];if(url==='')url='/';let file=path.join(root,url);if(file.endsWith(path.sep)) file=path.join(file,'index.html');if(!fs.existsSync(file)) {res.statusCode=404;res.end('Not Found');return;}const ext=path.extname(file).toLowerCase();res.setHeader('Content-Type',mime[ext]||'application/octet-stream');res.end(fs.readFileSync(file));}).listen(port,()=>console.log('Serving '+root+' at http://localhost:'+port));\"",
+    "lint": "node -e \"console.log('No lint configured (pure single-file HTML/JS).');\"",
+    "open": "node -e \"const {exec}=require('child_process'); const url='http://localhost:3000'; const cmd=process.platform==='win32'?('start '+url):('open '+url); exec(cmd,()=>{});\""
+  }
+}
