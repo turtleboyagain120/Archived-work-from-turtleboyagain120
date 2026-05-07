@@ -1,0 +1,11 @@
+DOCKER QUICK START
+
+Run project:
+docker compose up --build
+
+Stop project:
+CTRL + C
+
+Reset everything:
+docker system prune -a
+

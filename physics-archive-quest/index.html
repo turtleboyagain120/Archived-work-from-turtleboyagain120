@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Quest: Physics + Medium Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="Archive Quest game">
+    <header class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <h1>Archive Quest</h1>
+          <p class="sub">A small HTML/CSS game + quiz. Get 10/10 to unlock the corrupted note.</p>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="Quiz stats">
+        <div class="pill">Lives: <span id="lives">3</span></div>
+        <div class="pill">Score: <span id="score">0</span></div>
+        <div class="pill">Progress: <span id="progress">0/1</span></div>
+      </div>
+    </header>
+
+    <!-- GAME SCREEN -->
+    <section id="screen-game" class="screen">
+      <div class="card">
+        <h2>Step 1 — The “Avoid the Facility” micro-game</h2>
+        <p class="muted">
+          Move with <kbd>Arrow Keys</kbd> or <kbd>A</kbd>/<kbd>D</kbd>.
+          Survive 25 seconds. Don’t get hit by the grumpy facility.
+        </p>
+
+        <div class="hud">
+          <div class="hud-item">Time: <span id="timeLeft">25.0</span>s</div>
+          <div class="hud-item">Best streak: <span id="best">0</span></div>
+        </div>
+
+        <div class="arena" aria-label="Game arena">
+          <div class="arenaFx" aria-hidden="true">
+            <div class="scanlines"></div>
+            <div class="holo"></div>
+            <div class="vignette"></div>
+          </div>
+          <div id="player" class="player" aria-label="You"></div>
+          <div id="facility" class="facility" aria-label="Facility"></div>
+          <div id="warning" class="warning" aria-hidden="true">HOT DOG SMOKE DETECTED</div>
+          <div id="hitRing" class="hitRing" aria-hidden="true"></div>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="primary">Start run</button>
+          <button id="skipToQuizBtn" class="ghost">Skip to quiz (for testing)</button>
+        </div>
+
+        <p class="footnote muted">
+          This is intentionally simple so the quiz + note are the main deliverable.
+        </p>
+      </div>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="screen-quiz" class="screen hidden">
+      <div class="card quiz">
+        <h2>Step 2 — Quiz (Medium)</h2>
+        <p class="muted">Answer correctly to reach <strong>10/10</strong>.</p>
+
+        <div class="quiz-meta">
+          <div class="qprogress">
+            <div class="bar" aria-hidden="true">
+              <div id="barFill" class="bar-fill" style="width:0%"></div>
+            </div>
+            <div class="qprogress-text" id="qprogressText">0 questions correct</div>
+          </div>
+        </div>
+
+        <div class="question" id="questionBox">
+          <div class="qhead">
+            <div class="qtag">Question <span id="qIndex">1</span> of <span id="qTotal">10</span></div>
+          </div>
+          <h3 id="questionText">Loading…</h3>
+
+          <fieldset class="answers" id="answers"></fieldset>
+
+          <div class="quiz-actions">
+            <button id="submitAnswer" class="primary">Submit</button>
+            <button id="nextBtn" class="ghost hidden">Next</button>
+          </div>
+
+          <p class="quiz-feedback" id="feedback" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT SCREEN -->
+    <section id="screen-result" class="screen hidden">
+      <div class="card">
+        <h2>Step 3 — The note unlocked</h2>
+        <p class="muted">
+          If you scored 10/10, the note appears corrupted on purpose—like the archive fought back.
+        </p>
+
+        <div class="result">
+          <div class="result-top">
+            <div>
+              <div class="label">Your score</div>
+              <div class="scoreBig">
+                <span id="finalScore">0</span>/10
+              </div>
+            </div>
+            <div class="actions">
+              <button id="playAgain" class="ghost">Play again</button>
+            </div>
+          </div>
+
+          <div class="noteWrap">
+            <div class="noteLabel">What feels archived (corrupted)</div>
+            <pre id="note" class="note" aria-label="Corrupted note"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="kbdHint">Tip:</span> Survive → 10/10 quiz → unlock.
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+ARCHIVE INDEX
+
+1. AI Study Buddy (Docker version)
+2. Static HTML Study Buddy (no backend)
+3. Carlos Physics Story experiment
+4. Docker learning tests
+5. Random UI experiments
+
+Notes:
+- Some projects may be incomplete
+- Some may be broken
+- Nothing is removed, only added
+

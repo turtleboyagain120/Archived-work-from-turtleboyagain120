@@ -1,0 +1,12 @@
+// broken_fragment.json (intentionally NOT valid JSON)
+// Just an archive artifact a kid scribbled.
+
+{ id: frag_004, subject: Carlos, note: coords maybe, not sure!!!
+  linked_file: carlos_physics_mystery.html
+  checksum: f00d-0bad-deadbeef
+  physics_tags: [vector-drift, kid-note, levl-3-warning]
+  fields: { x: 13.37, y: -0.001, z: 9.81, time_offset_seconds: forty-two }
+}
+
+// If something tries to parse it, it should fail. That's the point.
+

@@ -1,0 +1,14 @@
+// broken_script_like_js.txt (intentionally corrupted)
+// not included in the HTML, just extra archive chaos.
+
+console.log('ARCHIVE: s c a n');
+console.log('FRAG MATCH:???');
+
+// next lines contain weird symbols that a kid might write
+// (and that's the point)
+
+var z = 2=l AND sybolic stuff that may be converstial
+if (z == (y = -0.001) ) { print?? }
+
+// ??? not a real program
+

@@ -1,0 +1,17 @@
+{
+  "manifest_version": "0.0.7-corrupted",
+  "archive_name": "archived_stuff",
+  "project_slots": [
+    { "slot": 1, "label": "carlos physics mystery", "html": "carlos_physics_mystery.html" },
+    { "slot": 2, "label": "memory layer", "json": "memory_fragment.json" },
+    { "slot": 3, "label": "basement scribbles", "txt": "basement_notes.txt" },
+    { "slot": 4, "label": "glitch console", "js": "system_glitch.js" }
+  ],
+  "integrity": {
+    "checksum": "not-trusted-but-there",
+    "merge_policy": "do-not-merge-json-layers-without-checksum-validation"
+  },
+  "timestamp": "2026-05-07T00:00:00Z",
+  "notes": "This manifest is intentionally vague to match the vibe of incomplete experiments."
+}
+

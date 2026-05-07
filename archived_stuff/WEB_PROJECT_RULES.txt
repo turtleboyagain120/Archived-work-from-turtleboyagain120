@@ -1,0 +1,11 @@
+WEB PROJECT RULES
+
+- index.html opens UI
+- script.js handles logic
+- style.css handles design
+
+If using Docker:
+- backend runs separately
+- frontend may be static
+- NEVER mix paths without checking ports
+
