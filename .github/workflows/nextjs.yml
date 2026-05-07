@@ -1,0 +1,99 @@
+# name: Deploy Next.js site to Pages
+#
+# Remade to be repo-safe and work with common Nx/monorepo layouts.
+# Assumes Next.js app is located at: archive-workspace/apps/next-app
+# and its build output is handled by GitHub Pages via `actions/configure-pages` (static_site_generator: next).
+#
+name: Deploy Next.js (archive-workspace) to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Detect package manager at repo root
+      - name: Detect package manager
+        id: detect-package-manager
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}"
+          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
+            echo "manager=yarn" >> "$GITHUB_OUTPUT"
+            echo "command=install" >> "$GITHUB_OUTPUT"
+            echo "runner=yarn" >> "$GITHUB_OUTPUT"
+          elif [ -f "${{ github.workspace }}/package-lock.json" ] || [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> "$GITHUB_OUTPUT"
+            echo "command=ci" >> "$GITHUB_OUTPUT"
+            echo "runner=npx --no-install" >> "$GITHUB_OUTPUT"
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          # Cache based on whichever lockfile exists at repo root
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+
+      # Configure Pages build for Next.js
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
+          # If you have Next.js image usage and want to disable SSR optimization:
+          # You can keep/remove this depending on your needs.
+          # This is left as default behavior.
+
+      # Install dependencies at repo root
+      - name: Install dependencies
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      # Build Next app from monorepo subfolder
+      - name: Build with Next.js
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}/archive-workspace"
+          # Prefer monorepo scripts if present; fallback to `next build`
+          if [ -f "package.json" ] && grep -q "\"build\"" package.json; then
+            ${{ steps.detect-package-manager.outputs.runner }} next-app build || true
+          fi
+          # Common case: Next app has its own package.json with a build script
+          cd "${{ github.workspace }}/archive-workspace/apps/next-app"
+          ${{ steps.detect-package-manager.outputs.runner }} next build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Next.js default output for static export is often `out/` via configure-pages,
+          # but static generation may also yield `out/` depending on Pages config.
+          # Keep `./out` as in the original sample.
+          path: ./archive-workspace/apps/next-app/out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
