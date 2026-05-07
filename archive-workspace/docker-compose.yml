@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    command: sh -lc "npx nx run next-app:serve --port=3000 --hostname=0.0.0.0 || npx next-app:serve"
+    environment:
+      - NODE_ENV=development
+
